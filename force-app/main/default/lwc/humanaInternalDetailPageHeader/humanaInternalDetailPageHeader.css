@@ -1,0 +1,26 @@
+.header{
+    background-color: #EAECEC;
+}
+.headerText{
+    font-size: xx-large;
+}
+.container{
+    display: flex;
+}
+.columnText{
+    font-weight: bold;
+}
+.columnText::after{
+    padding: 10%;
+}
+.secondElement{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-content: stretch;
+}
+.secondElement .slds-icon-utility-email{
+    display: none;
+}

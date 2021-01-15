@@ -1,0 +1,34 @@
+<template >
+  <lightning-layout-item
+    size="12"
+    small-device-size="12"
+    medium-device-size="5"
+    large-device-size="5"
+    padding="around-small"
+    class="my-contact-card quote-summary-wrapper"
+  >
+    <lightning-card>
+      <h2 slot="title">
+        <img src="/Humana/resource/1578055031000/humanaImages/contacts.png" />
+        <span>My Contacts</span>
+      </h2>
+      <div class="contacts-wrapper">
+        <template for:each={contacts} for:item="contact">  
+          <div key={contact.Id} class="contact-single">
+            <p class="role"> {contact.Title}</p>    
+            <p class="name">{contact.Name}</p>
+            <p class="mail">
+              <img src="/Humana/resource/1578055031000/humanaImages/email.png" />
+              <a href="mailto:{contact.Email}">{contact.Email}</a>
+            </p>
+            <p class="contact">
+              <img src="/Humana/resource/1578055031000/humanaImages/call.png" />
+              {contact.Phone}
+            </p>
+            <p slot="footer"></p>
+          </div>
+        </template>
+      </div>
+    </lightning-card>
+  </lightning-layout-item>
+</template >

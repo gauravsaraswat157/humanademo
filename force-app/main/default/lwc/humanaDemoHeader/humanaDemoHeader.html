@@ -1,0 +1,59 @@
+<template>
+    <div class="slds-context-bar">
+        <div class="slds-context-bar__primary">
+            <div
+                class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click slds-no-hover">
+                <span class="slds-context-bar__label-action slds-context-bar__app-name">
+                    <span class="slds-truncate" title="App Name">Humana Agent</span>
+                </span>
+            </div>
+        </div>
+        <nav class="slds-context-bar__secondary" role="navigation">
+            <ul class="slds-grid">
+                <template for:each={menuItems} for:item='item'>
+                    <div if:true={item.subMenu} key={item.id}>
+                        <li onclick={showSubmenu}
+                            class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click">
+                            <a href="javascript:void(0);" class="slds-context-bar__label-action" title={item.Label} onclick={showSubmenu}>
+                                <span class="slds-truncate" title="Menu Item">{item.label}</span>
+                            </a>
+                            <div class="slds-context-bar__icon-action slds-p-left_none">
+                                <button class="slds-button slds-button_icon slds-button_icon slds-context-bar__button"
+                                    aria-haspopup="true" title="Open menu item submenu">
+                                    <div if:true={toggleArrow}>
+                                    <lightning-icon icon-name="utility:chevrondown" alternative-text="Connected" class="slds-icon slds-icon_x-small slds-icon-text-default slds-m-right_x-small">
+                                    </lightning-icon>
+                                </div>
+                                <div if:false={toggleArrow}>
+                                    <lightning-icon icon-name="utility:chevronup" alternative-text="Connected" class="slds-icon slds-icon_x-small slds-icon-text-default slds-m-right_x-small">
+                                    </lightning-icon>
+                                </div>
+                                </button>
+                            </div>
+                            <div class="slds-dropdown slds-dropdown_right">
+                                <ul class="slds-dropdown__list" role="menu">
+                                    <template for:each={item.subMenu} for:item='subItem'>
+                                        <li key={subItem.Id} class="slds-dropdown__item" role="presentation">
+                                            <a class="slds-context-bar__label-action" data-menu-item-id={subItem.id}
+                                                href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                                <span class="slds-truncate" title={subItem.label}>{subItem.label}</span>
+                                            </a></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </li>
+                    </div>
+                    <div if:false={item.subMenu} key={item.id}>
+                        <li class="slds-context-bar__item">
+                            <a class="slds-context-bar__label-action" data-menu-item-id={item.id} href="">
+                                <span class="slds-truncate" title={item.label}>{item.label}</span>
+                            </a></li>
+                    </div>
+                </template>
+            </ul>
+            <div style="float:right;">
+                    <ul></ul>
+            </div>
+        </nav>
+    </div>
+</template>

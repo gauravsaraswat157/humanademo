@@ -1,0 +1,3 @@
+let definition = 
+                {"Cards":["my-contact-card","resource-card"],"dataSource":{"type":"Custom","value":{"body":"[{\"name\":\"Text\"}]"}},"enableLwc":true,"repeatCards":false,"lwc":{"MasterLabel":"cardCanvas3x","DeveloperName":"cardCanvas3x","Id":"0Rb2w0000008VlJCAU","name":"cardCanvas3x"},"previewType":"designTime","componentName":"cfHumanaContactResourceCards_1_ThePlumTreeGroup","workspace":["my-contact-card/The Plum Tree Group/1/1577770038318","resource-card/The Plum Tree Group/1/1577768289980"],"GlobalKey__c":"humana-contact-resource-cards/1/The Plum Tree Group/1577768264157"}; 
+            export default definition

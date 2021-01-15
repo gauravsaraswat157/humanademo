@@ -1,0 +1,21 @@
+<template>
+  <div class="via-nds">
+    <div class="nds-is-relative"></div>
+    <!--<div if:true={isLoaded} class="nds-p-horizontal--large nds-p-top--large">
+      <div class="nds-text-heading_small" if:true={session.title}>
+        {session.title}
+      </div>
+      <div class="nds-grid nds-gutters">
+        <div class="nds-col">
+          <c-input
+            oninput={searchCard}
+            icon-name-left="utility:search"
+            placeholder="search here."
+          ></c-input>
+        </div>
+        <div class="nds-col"></div>
+      </div>
+    </div>-->
+    <slot></slot>
+  </div>
+</template>

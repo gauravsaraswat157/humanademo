@@ -1,0 +1,36 @@
+<template>
+  <lightning-layout-item
+    size="4"
+    small-device-size="6"
+    medium-device-size="4"
+    padding="around-small"
+  >
+    <lightning-card>
+      <h3 slot="title">
+        {name}
+        <span class="header-link"><a href={pageURL}>{pageLabel}</a></span>
+      </h3>
+      <lightning-radio-group
+        name="action"
+        label="I would like to:"
+        options={options}
+        value={value}
+        type="radio"
+      >
+      </lightning-radio-group>
+      <lightning:select name="context" label="">
+        <option value="sales_office">Select Humana Sales office</option>
+      </lightning:select>
+      <lightning-button
+        label={buttonLabel}
+        title="Non-primary action"
+        onclick={handleGo}
+        class="slds-m-left_x-small"
+      >
+      </lightning-button>
+      <div slot="footer">
+        <span><a href={footerURL}>{footerLabel}</a></span>
+      </div>
+    </lightning-card>
+  </lightning-layout-item>
+</template>

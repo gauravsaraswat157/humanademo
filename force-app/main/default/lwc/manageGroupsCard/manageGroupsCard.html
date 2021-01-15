@@ -1,0 +1,67 @@
+<template>
+  <lightning-layout-item
+    padding="around-none"
+    size="12"
+    small-device-size="6"
+    medium-device-size="4"
+    large-device-size="4"
+    class="homepage-card"
+  >
+    <lightning-card>
+      <div class="header-img">
+        <img src={data.headerImage} alt="">
+      </div>
+
+      <div class="card-content">
+        <div class="title">
+          <h3>{data.title}</h3>
+        </div>
+        <div class="sub-title">
+          <h4>{data.subTitle}</h4>
+        </div>
+        <div class="search-label">
+          {data.searchLabel}
+        </div>
+        <div class="lookup-container">
+          <c-lookup-container></c-lookup-container>
+        </div>
+        <div class="links">
+          <template for:each={links} for:item="link">
+              <div key={link.id} class="link-row">
+              <a href={link.value}>{link.label}
+                <lightning-icon class="forward-arrow" icon-name="utility:forward" size="small">
+                </lightning-icon>
+              </a>
+              </div>
+          </template>
+        </div>
+        <div class="footer-link">
+          <a href={data.FooterUrl}>{data.FooterLabel}
+            <lightning-icon class="forward-arrow" icon-name="utility:forward" size="small">
+            </lightning-icon>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- <lightning-radio-group
+        label="I would like to:"
+        options={options}
+        value={data.SelectedOption}
+        type="radio"
+        onchange={handleOptionChange}
+      >
+      </lightning-radio-group> -->
+      <!-- <lightning-button
+        label={data.ButtonLabel}
+        title="Non-primary action"
+        onclick={handleGo}
+        class="slds-m-left_x-small"
+      > -->
+      <!-- </lightning-button>
+      <div slot="footer">
+        <span><a href={data.FooterURL}>{data.FooterLabel}</a></span>
+      </div>-->
+    </lightning-card>
+  </lightning-layout-item>
+</template>

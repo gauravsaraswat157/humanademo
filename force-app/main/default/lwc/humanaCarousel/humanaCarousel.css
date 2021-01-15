@@ -1,0 +1,62 @@
+.humana-carouselWrap{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+  align-content: stretch;
+  position: relative;
+}
+.colse-container{
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: #000;
+}
+.colse-container a{
+  font-size: 14px;
+  color: #fff;
+  text-decoration: underline;
+}
+.carousel-gradient {
+  color: #fff;
+  background-color: #612166;
+  border-bottom-left-radius: 3rem;
+  overflow: hidden;
+}
+.humana-carouselWrap .carousel-img{
+  width: fit-content;
+}
+.humana-carouselWrap .carousel-img img{
+  max-height: 130px;
+  width: auto;
+}
+.humana-carouselWrap .carousel-content{
+  flex: 1;
+}
+.humana-carouselWrap .header-title{
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+.humana-carouselWrap .header-description{
+  font-size: 14px;
+}
+.humana-carouselWrap .header-description a{
+  color: #fff;
+  font-family: "FS Humana bold",Arial,Helvetica,Verdana,sans-serif;
+  text-decoration: underline;  
+}
+.humana-carouselWrap .header-description a img{
+    height: 14px;
+    margin-left: 5px;
+    display: inline-block;
+    clear: both;
+    position: relative;
+    top: -2px;
+}
+.greeting {
+  font-size: 17px;
+  margin-top: 20px;
+  font-family: "FS Humana Bold",Arial,Helvetica,Verdana,sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+}

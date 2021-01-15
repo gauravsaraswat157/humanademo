@@ -1,0 +1,3 @@
+let definition = 
+                {"Cards":["benefit-manager"],"dataSource":{"type":"Custom","value":{"body":"[{\"name\": \"Test\"}]"},"contextVariables":[{"name":"name","val":"Test"}]},"enableLwc":true,"repeatCards":false,"lwc":{"MasterLabel":"cardCanvas3x","DeveloperName":"cardCanvas3x","Id":"0Rb2w0000008VlJCAU","name":"cardCanvas3x"},"previewType":"designTime","componentName":"cfHumanaBenefitsCard_1_ThePlumTreeGroup","workspace":["benefit-manager/The Plum Tree Group/1/1577700362137"],"GlobalKey__c":"humana-benefits-card/1/The Plum Tree Group/1577699982196"}; 
+            export default definition

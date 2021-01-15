@@ -1,0 +1,16 @@
+<template>
+    <!-- <div style="height: 500px;">
+        <lightning-datatable
+                key-field="Id"
+                data={accounts.data}
+                columns={columns}
+                onsave={handleSave}
+                draft-values={draftValues} 
+                hide-checkbox-column=true
+                resize-column-disabled=true 
+                onrowaction={handleRowAction}
+                class="quoteClass">
+        </lightning-datatable>
+    </div> -->
+    <c-lwc-data-table  object-api-name="Account" field-names-str="Name,Group_ID__c,vlocity_ins__Status__c,Products__c,Primary_Contact__c,Case_Size__c,Renewal_Date__c" inline-edit="true" col-action="true"></c-lwc-data-table>
+</template>

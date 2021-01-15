@@ -1,0 +1,36 @@
+<template>
+  <template if:true={showHeader}>
+    <div class="humana-carouselWrap carousel-gradient">
+      <div class="colse-container">
+        <a href="javascript:void(0)" onclick={closeHeader}>Close X</a> 
+      </div>
+      <div class="carousel-img">
+        <img src="/Humana/resource/1578055031000/humanaImages/tabar.png" />
+      </div>
+      <div class="carousel-content">
+        <div class="header-title">Need to find a provider in your network?</div>
+        <div class="header-description">
+          Use our Find a Doctor tool to view provider near you. <a href="#">See how <img src="/Humana/resource/1578055031000/humanaImages/expand.png" /></a>
+        </div>
+      </div>
+    </div>
+
+    <!--<lightning-carousel
+      class="carousel-wrapper humana-carouselWrap"
+      disable-auto-scroll
+    >
+      <lightning-carousel-image
+        class="carousel-gradient"
+        src=""
+        header="Need to find a provider in your network?"
+        description="Use our Find a Doctor tool to view provider near you."
+        alternative-text=""
+        href="/Humana/s/"
+      >
+      </lightning-carousel-image>
+    </lightning-carousel>-->
+    <template if:true={isNameAvailable}>
+      <div class="greeting">It's great to see you, {showName}!</div>
+    </template>
+  </template>
+</template>

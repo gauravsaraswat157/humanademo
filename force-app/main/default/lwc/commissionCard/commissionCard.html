@@ -1,0 +1,37 @@
+<template>
+  <lightning-layout-item
+    size="4"
+    small-device-size="6"
+    medium-device-size="4"
+    padding="around-small"
+    class="quote-enroll-card"
+  >
+    <lightning-card>
+      <h3 slot="title">
+        {data.title}
+        <span class="header-link"
+          ><a href={data.PageURL}>{data.PageLabel}</a></span
+        >
+      </h3>
+      <div class="row">
+        <span class="left">{data.YTDEarningLabel}</span>
+        <span class="right">$480,308</span>
+      </div>
+      <div class="row">
+        <span class="left">{data.MontEarningLabel}</span>
+        <span class="right">$408</span>
+      </div>
+      <div class="row">
+        <span class="left">{data.ClubPointLabel}</span>
+        <span class="right">2700</span>
+      </div>
+      <div class="links">
+        <template for:each={links} for:item="link">
+          <div key={link.id} class="link-row">
+            <a href={link.value}>{link.label}</a>
+          </div>
+        </template>
+      </div>
+    </lightning-card>
+  </lightning-layout-item>
+</template>

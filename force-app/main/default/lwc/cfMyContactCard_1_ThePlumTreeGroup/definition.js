@@ -1,0 +1,3 @@
+let definition = 
+                {"states":[{"fields":[],"conditions":{"group":[{"field":"$scope.data.status","operator":"===","value":"'active'","type":"system"}]},"definedActions":{"actions":[]},"name":"My Contacts","lwc":{"MasterLabel":"myContacts","DeveloperName":"myContacts","Id":"0Rb2w0000008WIRCA2","name":"myContacts"},"isSmartAction":false,"smartAction":{}}],"filter":{},"dataSource":{"type":null},"title":"My Contacts","enableLwc":true,"GlobalKey__c":"my-contact-card/The Plum Tree Group/1/1577770038318"}; 
+            export default definition

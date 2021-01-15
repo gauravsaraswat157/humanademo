@@ -1,0 +1,16 @@
+<template>
+  <template for:each={typeAttributes.actions} for:item="item">
+    <div
+      key={item.id}
+      class="slds-p-right_medium slds-p-vertical_xx-small slds-float_left"
+    >
+      <vlocity_ins-action
+        state-obj={obj}
+        context-id={contextId}
+        s-object-type={sObjectType}
+        state-action={item}
+      >
+      </vlocity_ins-action>
+    </div>
+  </template>
+</template>

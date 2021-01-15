@@ -1,0 +1,3 @@
+let definition = 
+                {"states":[{"fields":[],"conditions":{"group":[{"field":"$scope.data.status","operator":"===","value":"'active'","type":"system"}]},"definedActions":{"actions":[]},"name":"Active","lwc":{"MasterLabel":"test-state","DeveloperName":"testState","Id":"0Rb2w0000008VVdCAM","name":"testState"},"isSmartAction":false,"smartAction":{},"customLwc":true,"customLwcRepeat":true}],"filter":{},"dataSource":{"type":null},"title":"Test Card","enableLwc":true,"GlobalKey__c":"test-card/The Plum Tree Group, Inc./1/1577167093970"}; 
+            export default definition

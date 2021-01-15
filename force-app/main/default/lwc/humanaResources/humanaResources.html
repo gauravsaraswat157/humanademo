@@ -1,0 +1,27 @@
+<template>
+  <lightning-layout-item
+    size="12"
+    small-device-size="12"
+    medium-device-size="7"
+    large-device-size="7" 
+    padding="around-small"
+    class="resources-card quote-summary-wrapper"
+  >
+    <lightning-card>
+      <h2 slot="title">
+        <img src="/Humana/resource/1578055031000/humanaImages/resources.png" />
+        <span>Resources</span>
+      </h2>
+      <div class="resource-link-wrapper">
+        <template for:each={links} for:item="link">
+          <div key={link.id} class="link-row resource-link">
+            <a href={link.value}>{link.label}
+              <lightning-icon class="forward-arrow" icon-name="utility:forward" size="small">
+              </lightning-icon>
+            </a>
+          </div>
+        </template>
+      </div>
+    </lightning-card>
+  </lightning-layout-item>
+</template>

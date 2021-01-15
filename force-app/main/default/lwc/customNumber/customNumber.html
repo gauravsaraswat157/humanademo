@@ -1,0 +1,10 @@
+<template>
+  <slot>
+    {elementValue}
+    <lightning-input
+      label="Age"
+      value={elementValue}
+      onchange={changeHandler}
+    ></lightning-input>
+  </slot>
+</template>

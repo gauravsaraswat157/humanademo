@@ -1,0 +1,19 @@
+<template>
+  <lightning-card title="Quick links" class="shadowed-box">
+    <lightning-layout multiple-rows="true">
+      <template for:each={links} for:item="link">
+        <lightning-layout-item size="3" padding="around-small" key={link.id}>
+          <a class="link" href={link.url}
+            >{link.title}
+            <lightning-icon
+              class="forward-arrow"
+              icon-name="utility:forward"
+              size="small"
+            >
+            </lightning-icon>
+          </a>
+        </lightning-layout-item>
+      </template>
+    </lightning-layout>
+  </lightning-card>
+</template>

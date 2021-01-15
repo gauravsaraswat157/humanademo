@@ -1,0 +1,51 @@
+<template>
+  <lightning-layout-item
+    size="4"
+    small-device-size="6"
+    medium-device-size="4"
+    padding="around-small"
+    class="quote-enroll-card"
+  >
+    <lightning-card class="cardClass">
+      <h3 slot="title" class="titleClass">
+        <span class="header-link">Test</span>
+      </h3>
+
+      <div
+        onclick={toggleFlyout}
+        class="slds-icon_container pointer slds-icon_container_circle bg-shade expand-icon"
+      >
+        Click Here
+      </div>
+    </lightning-card>
+
+    <div class={getFlyoutClass}>
+      <div class="via-slds-flyout-container">
+        <template if:true={renderFlyout}>
+          <vlocity_ins-modal
+            hideheader
+            hideclosebutton
+            hidefooter
+            is-modal-open
+            size="large"
+          >
+            <div slot="content">
+              <div class="slds-text-align_right">
+                <div
+                  onclick={toggleFlyout}
+                  class="slds-icon_container pointer  slds-icon_container_circle bg-shade"
+                >
+                  <vlocity_ins-icon
+                    icon-name="action:reject"
+                    size="x-small"
+                  ></vlocity_ins-icon>
+                </div>
+              </div>
+              <slot name="flyout"></slot>
+            </div>
+          </vlocity_ins-modal>
+        </template>
+      </div>
+    </div>
+  </lightning-layout-item>
+</template>

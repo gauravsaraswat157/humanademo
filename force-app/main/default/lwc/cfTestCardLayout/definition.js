@@ -1,0 +1,3 @@
+let definition = 
+                {"Cards":["test-card"],"dataSource":{"type":"Custom","value":{"resultVar":"records","body":"[{\"name\":\"John\"},{\"name\":\"Robert\"}]"}},"enableLwc":true,"repeatCards":false,"lwc":{"MasterLabel":"test-layout","DeveloperName":"testLayout","Id":"0Rb2w0000008VVYCA2","name":"testLayout"},"previewType":"runTime","componentName":"cfTestCardLayout","enableUserInfo":false,"GlobalKey__c":"test-card-layout/1/The Plum Tree Group, Inc./1577166953365","workspace":["test-card/The Plum Tree Group, Inc./1/1577167093970"]}; 
+            export default definition

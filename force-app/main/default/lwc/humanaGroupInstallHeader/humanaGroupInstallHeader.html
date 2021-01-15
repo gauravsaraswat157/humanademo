@@ -1,0 +1,130 @@
+<template>
+  <template if:true={isDataAvailable}>
+    <div class="header slds-p-around_x-large">
+      <lightning-breadcrumbs class="header slds-p-around_x-large">
+        <lightning-breadcrumb label="Home" href="#" class="slds-text-small_caps">
+        </lightning-breadcrumb>
+        <lightning-breadcrumb label="Manage your groups" href="javascript:void(0);" class="slds-text-small_caps">
+        </lightning-breadcrumb>
+        <lightning-breadcrumb label={account.Name} href="javascript:void(0);" class="slds-text-small_caps">
+        </lightning-breadcrumb>
+        <lightning-breadcrumb label="Initiate Group Install" href="javascript:void(0);" class="slds-text-small_caps">
+        </lightning-breadcrumb>
+      </lightning-breadcrumbs>
+
+      <div class="slds-grid slds-gutters slds-p-top_small ">
+        <div class="slds-col slds-size_2-of-3 firstElement">
+          <h1 class="slds-p-left_x-large headerText">
+            {account.Name}
+            <a class="change-emp" href="javascript:void(0);" onclick={openAccountEdit}>Edit</a>
+          </h1>
+          <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-p-around_x-large account-detail-wrap">
+              <div class="account-row">
+                <div class="accont-label">Group :</div>
+                <div class="account-value">
+                  {account.Name}-{account.Group_ID__c}
+                </div>
+              </div>
+              <div class="account-row">
+                <template if:true={billingAvailable}>
+                  <div class="accont-label">
+                    <img src="/Humana/resource/1578055031000/humanaImages/placeholder.png" />
+                  </div>
+                  <div class="account-value">
+                    {account.BillingAddress.street}
+                    {account.BillingAddress.city} {account.BillingAddress.state}
+                    {account.BillingAddress.country}
+                    {account.BillingAddress.postalCode}
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3 secondElement">
+          <template if:true={openContact}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+              aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+              <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                    onclick={closeContactModal}>
+                    <lightning-icon icon-name="utility:close" size="medium">
+                    </lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                  </button>
+                  <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                    Group Contacts
+                  </h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                  <lightning-combobox name="selectedContact" label="Select a Contact" placeholder="Select a Contact"
+                    value={selectedContact} options={contactOptions} onchange={contactSelected}></lightning-combobox>
+
+                  <template if:true={isContactSelected}>
+                    <template if:true={contactRoleAvailable}>
+                      <div class="contact-detail-row">
+                        <div class="label">Role</div>
+                        <div class="value">{currentContact.Title}</div>
+                      </div>
+                    </template>
+                    <div class="contact-detail-lower">
+                      <div class="contact-detail-single">
+                        <template if:true={contactPhoneAvailable}>
+                          <img src="/Humana/resource/1578055031000/humanaImages/call.png" />
+                          <lightning-formatted-phone value={currentContact.Phone}></lightning-formatted-phone>
+                        </template>
+                      </div>
+                      <div class="contact-detail-single">
+                        <img src="/Humana/resource/1578055031000/humanaImages/email.png" />
+                        <lightning-formatted-email value={currentContact.Email}></lightning-formatted-email>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </template>
+  <!-- ///////////////////////////////// -->
+  <template if:true={editGroup}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+      aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+            onclick={closeAccountEdit}>
+            <lightning-icon icon-name="utility:close" size="medium"></lightning-icon>
+            <span class="slds-assistive-text">Close</span>
+          </button>
+          <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">
+            Edit- {account.Name}
+          </h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+          <lightning-record-edit-form record-id={account.Id} object-api-name="Account" onsuccess={handleSuccess}>
+            <lightning-messages> </lightning-messages>
+            <lightning-input-field field-name="Name"> </lightning-input-field>
+            <lightning-input-field field-name="Group_ID__c">
+            </lightning-input-field>
+            <lightning-input-field field-name="BillingAddress">
+            </lightning-input-field>
+            <lightning-button class="slds-m-top_small action-btn action-btn-right" variant="brand" type="submit"
+              name="update" label="Update">
+            </lightning-button>
+          </lightning-record-edit-form>
+        </div>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+  <!-- /////////////////////////////// -->
+  <template if:false={isDataAvailable}>
+    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+  </template>
+</template>

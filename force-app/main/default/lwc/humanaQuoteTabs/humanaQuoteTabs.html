@@ -1,0 +1,28 @@
+<template>
+    <lightning-tabset variant="scoped">
+        <lightning-tab label="Recent quotes">
+            <div style="height: 300px;">
+                <lightning-datatable
+                        key-field="Id"
+                        data={accounts.data}
+                        columns={columns}
+                        onsave={handleSave}
+                        draft-values={draftValues} 
+                        hide-checkbox-column=true
+                        resize-column-disabled=true 
+                        onrowaction={handleRowAction}
+                        class="quoteClass">
+                </lightning-datatable>
+            </div>
+        </lightning-tab>
+        <lightning-tab label="Quotes in underwriting">
+            Quotes in underwriting
+        </lightning-tab>
+        <lightning-tab label="Case installation status">
+            Case installation status
+        </lightning-tab>
+        <lightning-tab label="Upcoming renewals">
+            Upcoming renewals
+        </lightning-tab>
+    </lightning-tabset>
+</template>

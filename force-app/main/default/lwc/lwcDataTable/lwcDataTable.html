@@ -1,0 +1,27 @@
+<template>
+  <div class="benefit-page-heading">Existing Groups</div>
+  <div class="search-box">
+    <lightning-input type="search" aria-autocomplete="list" aria-controls="listbox" autocomplete="off"
+      value={searchTerm} role="textbox" id="combobox" placeholder={searchPlaceholder} onchange={handleSearch}>
+    </lightning-input>
+  </div>
+  <div class="benefit-datatable">
+    <template if:true={isDataAvailable}>
+      <c-datatable-custom-actions class="benefit-groups-table" key-field="id" data={data} columns={columns}
+        onrowselection={getSelectedName} enable-infinite-loading onrowaction={handleRowAction}
+        is-loading={tableLoadingState} onsave={handleSave} draft-values={draftValues} onsort={updateColumnSorting}
+        hide-checkbox-column>
+      </c-datatable-custom-actions>
+      <c-pagination-component total={totalNumberOfRows} onpageclick={pageClicked}>
+      </c-pagination-component>
+    </template>
+    <template if:true={requestInProgress}>
+      <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+    <template if:false={requestInProgress}>
+      <template if:false={isDataAvailable}>
+        <div class="slds-align_absolute-center">No record(s) found.</div>
+      </template>
+    </template>
+  </div>
+</template>

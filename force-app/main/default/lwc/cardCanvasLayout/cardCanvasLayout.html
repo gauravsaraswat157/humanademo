@@ -1,0 +1,15 @@
+<template>
+  <div class="via-slds">
+    <div class="slds-is-relative"></div>
+    <div if:true={isLoaded}>
+      <div class="slds-text-heading_small" if:true={session.title}>
+        {session.title}
+      </div>
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col">Input field</div>
+        <div class="slds-col"></div>
+      </div>
+    </div>
+    <slot></slot>
+  </div>
+</template>

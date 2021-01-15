@@ -1,0 +1,197 @@
+<template>
+    <div class="account-delegate">
+        <div class="slds-p-around_x-small slds-p-top_x-large">
+            <template if:true={requestInProgress}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+            <template if:true={Accounts}>
+                <ul>
+                    <template for:each={Accounts} for:item="acc">
+                        <li class="account-list" key={acc.Id}>
+                            <lightning-badge class="account-title" label={acc.Name}></lightning-badge>
+                            <button type="button" name={acc.Id} onclick={toggleBrokerModal}
+                                class="slds-button slds-button_neutral add-broker">Add Brokers</button>
+                            <ul key={acc.Id}>
+                                <template if:true={acc.Team}>
+                                    <template for:each={acc.Team} for:item="con">
+                                        <li key={con.Id}>
+                                            <div class="team-row-wrapper">
+                                                <div class="team-cell">
+                                                    <lightning-input class="action-checkbox" type="checkbox"
+                                                        name={con.Id}></lightning-input>
+                                                </div>
+                                                <div class="team-cell">
+                                                    <span>Broker Name</span>
+                                                    <span>
+                                                        <lightning-badge label={con.FirstName}></lightning-badge>
+                                                        <lightning-badge label={con.LastName}></lightning-badge>
+                                                    </span>
+                                                </div>
+                                                <div class="team-cell">
+                                                    <span>Role</span>
+                                                    <span>
+                                                        <lightning-badge label={con.TeamMemberRole}></lightning-badge>
+                                                    </span>
+                                                </div>
+                                                <div class="team-cell">
+                                                    <span>Account Access</span>
+                                                    <span>
+                                                        <lightning-badge label={con.AccountAccessLevel}>
+                                                        </lightning-badge>
+                                                    </span>
+                                                </div>
+                                                <div class="team-cell">
+                                                    <span>Contact Access</span>
+                                                    <span>
+                                                        <lightning-badge label={con.ContactAccessLevel}>
+                                                        </lightning-badge>
+                                                    </span>
+                                                </div>
+                                                <div class="team-cell">
+                                                    <span>Opportunity Access</span>
+                                                    <span>
+                                                        <lightning-badge label={con.OpportunityAccessLevel}>
+                                                        </lightning-badge>
+                                                    </span>
+                                                </div>
+                                                <div class="team-cell">
+                                                    <span>Case Access</span>
+                                                    <span>
+                                                        <lightning-badge label={con.CaseAccessLevel}></lightning-badge>
+                                                    </span>
+                                                </div>
+                                                <div class="team-cell">
+                                                    <span>Link Access</span>
+                                                    <span>
+                                                        <lightning-badge label={con.LinkAccess}></lightning-badge>
+                                                    </span>
+                                                </div>
+                                                <div class="team-cell">
+                                                    <span>
+                                                        <!--<lightning-button-icon key={con.uniqueId} value={con.uniqueId} icon-name="utility:edit" onclick={openmodal} alternative-text="Edit"></lightning-button-icon>-->
+                                                        <button key={con.uniqueId} value={con.uniqueId}
+                                                            onclick={openmodal} class="button-icon"><img
+                                                                src={editIcon} /></button>
+                                                        <a href="#"><img src={deleteIcon} /></a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </template>
+                            </ul>
+                        </li>
+                    </template>
+                </ul>
+
+                <!-- Edit Team Member Model-->
+                <div class="slds-theme_default">
+                    <template if:true={openmodel}>
+                        <div class="demo-only" style="height: 640px;">
+                            <section role="dialog" tabindex="-1" aria-labelledby="edit-access-level-heading"
+                                aria-modal="true" aria-describedby="edit-access-level"
+                                class="slds-modal slds-fade-in-open">
+                                <div class="slds-modal__container extend-container">
+                                    <header class="slds-modal__header">
+                                        <button
+                                            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                            title="Close" onclick={closeModal}>
+                                            <lightning-icon icon-name="utility:close" size="medium">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Close</span>
+                                        </button>
+                                        <h2 id="edit-access-level-heading"
+                                            class="slds-text-heading_medium slds-hyphenate">Edit Access Level</h2>
+                                    </header>
+                                    <div class="slds-modal__content slds-p-around_medium" id="edit-access-level">
+                                        <div class="modal-grid">
+                                            <h4 class="slds-form-element__label slds-form-element__legend">Select Access
+                                                Levels</h4>
+                                            <div class="modal-content-column">
+                                                <lightning-combobox name="Account Access" label="Account Access"
+                                                    value={accountValue} placeholder="Select Access Level"
+                                                    options={accessOptions} onchange={handleAccountChange}>
+                                                </lightning-combobox>
+                                            </div>
+                                            <div class="modal-content-column">
+                                                <lightning-combobox name="Contact Access" label="Contact Access"
+                                                    value={contactValue} placeholder="Select Access Level"
+                                                    options={accessOptions} onchange={handleContactChange}>
+                                                </lightning-combobox>
+                                            </div>
+                                            <div class="modal-content-column">
+                                                <lightning-combobox name="Opportunity Access" label="Opportunity Access"
+                                                    value={opportunityValue} placeholder="Select Access Level"
+                                                    options={accessOptions} onchange={handleOpportunityChange}>
+                                                </lightning-combobox>
+                                            </div>
+                                            <div class="modal-content-column">
+                                                <lightning-combobox name="Case Access" label="Case Access"
+                                                    value={caseValue} placeholder="Select Access Level"
+                                                    options={accessOptions} onchange={handleCaseChange}>
+                                                </lightning-combobox>
+                                            </div>
+                                        </div>
+                                        <div class="modal-grid">
+                                            <div class="modal-content-column">
+                                                <lightning-dual-listbox name="languages" label="Select Link Access"
+                                                    source-label="Available" selected-label="Selected"
+                                                    field-level-help="Select the access levels for links"
+                                                    options={linkOptions} onchange={handleMultiChange}>
+                                                </lightning-dual-listbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <footer class="slds-modal__footer">
+                                        <button type="button" onclick={closeModal}
+                                            class="slds-button slds-button_neutral">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="button" onclick={saveMethod}
+                                            class="slds-button slds-button_brand">Save</button>
+                                    </footer>
+                                </div>
+                            </section>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </div>
+                    </template>
+                </div>
+
+            </template>
+
+
+        </div>
+    </div>
+
+    <template if:true={showBrokerModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={toggleBrokerModal}>
+                        <lightning-icon icon-name="utility:close" size="medium">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">
+                        Select Broker
+                    </h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-record-edit-form record-id={selectedAccountId} object-api-name="Account"
+                        onsuccess={handleSuccess}>
+                        <lightning-messages> </lightning-messages>
+                        <lightning-input-field field-name="Broker_Name__c">
+                        </lightning-input-field>
+                    </lightning-record-edit-form>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button onclick={toggleBrokerModal} class="slds-m-top_small action-btn" variant="brand"
+                        type="button" name="cancel" label="Cancel">
+                    </lightning-button>
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,9 @@
+<template>
+  <lightning-layout-item padding="slds-p-around_none" size="12" small-device-size="12" medium-device-size="12"
+    large-device-size="12" class="benefit-card">
+    <c-lwc-data-table if:true={isDataAvailable} object-api-name="Account" field-names-str={columns} inline-edit="true"
+      col-action="true" search-placeholder={searchPlaceholder} custom-actions={customActions} state-obj={obj}
+      context-id={contextId} s-object-type={sObjectType}>
+    </c-lwc-data-table>
+  </lightning-layout-item>
+</template>

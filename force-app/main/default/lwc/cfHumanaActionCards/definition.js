@@ -1,0 +1,3 @@
+let definition = 
+                {"Cards":["quote-enroll","manage-groups","wallet-and-rewards"],"dataSource":{"type":"Custom","value":{"resultVar":"","body":"[{\"name\": \"Test\"}]"},"contextVariables":[{"name":"name","val":"Test"}]},"enableLwc":true,"repeatCards":false,"lwc":{"MasterLabel":"cardCanvas3x","DeveloperName":"cardCanvas3x","Id":"0Rb2w0000008VlJCAU","name":"cardCanvas3x","omniSupport":true},"previewType":"runTime","componentName":"cfHumanaActionCards","GlobalKey__c":"humana-action-cards/1/The Plum Tree Group/1577338510334","workspace":["quote-enroll/The Plum Tree Group/1/1577351979420","manage-groups/The Plum Tree Group/1/1577366415161","wallet-and-rewards/The Plum Tree Group/1/1577686139555"],"enableUserInfo":true}; 
+            export default definition

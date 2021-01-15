@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Group Details">
+        <lightning-layout>
+            <lightning-layout-item padding="around-small" size="6" if:true={account.data}>
+                <h1>{name}</h1>
+                <p><strong>Address: </strong><lightning-formatted-rich-text value={address}></lightning-formatted-rich-text></p>
+                <p><lightning-formatted-phone value={phone}></lightning-formatted-phone></p>
+                <p><lightning-formatted-email value={email}></lightning-formatted-email></p>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="6" if:true={contacts}>
+                <template if:true={contacts}>
+                    <div class="slds-m-around_medium">
+                        <lightning-combobox
+                            name="contact"
+                            label="Company Contacts"
+                            value={value}
+                            placeholder="Select Contact"
+                            options={contacts}
+                            onchange={handleChange} >
+                        </lightning-combobox>
+                        <p><lightning-formatted-phone value={selectedPhone}></lightning-formatted-phone></p>
+                        <p><lightning-formatted-email value={selectedEmail}></lightning-formatted-email></p>
+                    </div>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+    </lightning-card>
+</template>

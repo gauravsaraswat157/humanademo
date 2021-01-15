@@ -1,0 +1,10 @@
+.footer{
+    display: flex;
+}
+.item {
+    flex-grow: 1; /* default 0 */
+  }
+  .itemTwo{
+      border-left : 2px solid white;
+      border-right : 2px solid white;
+  }

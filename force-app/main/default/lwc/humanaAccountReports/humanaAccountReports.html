@@ -1,0 +1,24 @@
+<template>
+  <lightning-card title="Reports" class="shadowed-box">
+    <lightning-layout multiple-rows="true">
+      <template for:each={reports} for:item="report">
+        <lightning-layout-item
+          size="3"
+          padding="around-small"
+          key={report.Id}
+          class="slds-p-horizontal_small"
+        >
+          <a class="link" href="javascript:void(0)"
+            >{report.Title}
+            <lightning-icon
+              class="forward-arrow"
+              icon-name="utility:forward"
+              size="small"
+            >
+            </lightning-icon>
+          </a>
+        </lightning-layout-item>
+      </template>
+    </lightning-layout>
+  </lightning-card>
+</template>

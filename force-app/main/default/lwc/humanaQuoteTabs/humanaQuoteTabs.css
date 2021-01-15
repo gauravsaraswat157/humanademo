@@ -1,0 +1,52 @@
+.btn_next > button {
+    border: none !important;
+    font-weight: 700;
+    font-size: larger;
+    color: #0D6E84;
+    white-space: nowrap;
+}
+.btn_next > button:hover {
+    background: none !important;
+    color: #0D6E84;
+}
+.btn_next > button:active {
+    background: none !important;
+    color: #0D6E84;
+}
+.btn_acct > button {
+    border: none !important;
+    font-weight: 700;
+    font-size: larger;
+    color: #0D6E84;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: underline;
+}
+.btn_acct > button:hover {
+    background: none !important;
+    color: #0D6E84;
+}
+.btn_acct > button:active {
+    background: none !important;
+    color: #0D6E84;
+}
+.quoteClass {
+    font-size: larger;
+}
+.slds-th__action {
+    height: 3rem !important;
+}
+thead > .slds-line-height_reset {
+    height: 1rem !important;
+}
+lightning-primitive-header-actions {
+    display: none !important;
+}
+.cf-vlocity-card {
+    width: 33.33% !important;
+    padding: .5rem;
+}
+.slds-card {
+    padding: 1rem !important;
+}

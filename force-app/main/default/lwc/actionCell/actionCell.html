@@ -1,0 +1,14 @@
+<template>
+  <lightning-button-menu
+    alternative-text="Actions"
+    icon-name="utility:threedots"
+  >
+    <template for:each={actions} for:item="action">
+      <lightning-menu-item
+        key={action.id}
+        href={action.url}
+        label={action.displayName}
+      ></lightning-menu-item>
+    </template>
+  </lightning-button-menu>
+</template>

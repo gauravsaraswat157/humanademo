@@ -1,0 +1,42 @@
+<template>
+  <lightning-layout class="account-status-grid">
+    <lightning-layout-item
+      padding="around-small"
+      class="group account-status-col"
+    >
+      <div class="header-row">
+        Group status
+      </div>
+      <div class="value-row">
+        {groupStatus}
+      </div>
+    </lightning-layout-item>
+    <lightning-layout-item
+      padding="around-small"
+      class="employee account-status-col"
+    >
+      <div class="header-row">
+        Total census members
+      </div>
+      <div class="value-row">
+        {activeEmployees}
+      </div>
+    </lightning-layout-item>
+    <lightning-layout-item
+      padding="around-small"
+      class="monthly account-status-col"
+    >
+      <div class="header-row">
+        Total monthly premium
+      </div>
+      <div class="value-row">
+        <lightning-formatted-number
+          value={totalMonthlyPremium}
+          format-style="currency"
+          currency-code="USD"
+        >
+        </lightning-formatted-number>
+      </div>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>

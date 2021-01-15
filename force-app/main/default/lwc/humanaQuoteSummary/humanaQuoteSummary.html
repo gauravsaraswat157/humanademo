@@ -1,0 +1,26 @@
+<template>
+  <lightning-card title="Quotes summary">
+    <template if:true={quotes}>
+      <p class="slds-p-horizontal_small">
+        <span class="count">{quotes.Accepted}</span>
+        <a href="#">Accepted</a>
+      </p>
+
+      <p class="slds-p-horizontal_small">
+        <span class="count">{quotes.Rejected}</span>
+        <a href="#">Rejected</a>
+      </p>
+
+      <p class="slds-p-horizontal_small">
+        <span class="count">{quotes.Approved}</span>
+        <a href="#">Approved</a>
+      </p>
+
+      <p class="slds-p-horizontal_small">
+        <span class="count">{quotes.Pending}</span>
+        <a href="#">Pending</a>
+      </p>
+    </template>
+    <p slot="footer"><a href={allQuotesLink}>View all quotes</a></p>
+  </lightning-card>
+</template>

@@ -1,0 +1,11 @@
+<template>
+  <ul class="pagination" if:true={showPagination}>
+    <li class={prevDisabled} onclick={prev}><a>&lsaquo;</a></li>
+    <template for:each={pages} for:item="page">
+      <li key={page.index} class={page.cls}>
+        <a onclick={pageClicked}>{page.label}</a>
+      </li>
+    </template>
+    <li class={nextDisabled} onclick={next}><a href="">&rsaquo;</a></li>
+  </ul>
+</template>

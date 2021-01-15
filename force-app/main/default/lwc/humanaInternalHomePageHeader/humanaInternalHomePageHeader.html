@@ -1,0 +1,18 @@
+<template>
+    <div class="header slds-p-around_x-large">
+        <lightning-breadcrumbs class="header slds-p-around_x-large">
+            <lightning-breadcrumb label="Home" href="http://example.com/parent" class="slds-text-small_caps">
+            </lightning-breadcrumb>
+            <lightning-breadcrumb label={pageName} href="javascript:void(0);" class="slds-text-small_caps">
+            </lightning-breadcrumb>
+        </lightning-breadcrumbs>
+        <h1 class="slds-p-top_small slds-p-left_x-large headerText">{headerText}</h1>
+        <h2 class="slds-p-left_x-large slds-p-top_small">{description}</h2>
+        <template if:true={buttonProperties}>
+            <div class="slds-p-left_x-large slds-p-top_x-large">
+            <lightning-button variant="brand" label="buttonProperties.buttonName" title="Primary action">
+             </lightning-button>
+            </div>
+    </template>
+    </div>
+</template>
