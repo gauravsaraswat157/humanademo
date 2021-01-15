@@ -6,9 +6,15 @@ import fetchAccountEmployees from "@salesforce/apex/HumanaUtility.fetchAccountEm
 import fetchStatusCategories from "@salesforce/apex/HumanaUtility.fetchStatusCategories";
 import fetchAccountQuotes from "@salesforce/apex/HumanaUtility.fetchAccountQuotes";
 import getAgreementId from "@salesforce/apex/SendAgreement.getAgreementId";
-import { updateRecord } from "lightning/uiRecordApi";
+import { updateRecord, getRecord, getFieldValue } from "lightning/uiRecordApi";
+import SEND_PDF_STATUS from '@salesforce/schema/vlocity_ins__TrailingDocumentPlaceholder__c.vlocity_ins__Status__c';
 import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import ID_FIELD from '@salesforce/schema/vlocity_ins__TrailingDocumentPlaceholder__c.Id';
+import fetchTrailingDocumets from "@salesforce/apex/TrailingDocuments.fetchTrailingDocumets";
+
+
+
 // import { loadStyle } from 'lightning/platformResourceLoader';
 // import humanaCSS from '@salesforce/resourceUrl/humanaResource';
 
@@ -130,6 +136,42 @@ export default class AccountTabs extends LightningElement {
     }
   }
 
+  @wire(fetchTrailingDocumets, { 'accountId': "$recordId" }) trailingDocumets({
+    error,
+    data
+  }) {
+    if (data) {
+      console.log("Trailling docs",JSON.stringify(data));
+      const local=JSON.parse(JSON.stringify(data));
+      local.forEach(rec=>{
+        rec.LastModifiedDate=rec.LastModifiedDate.split("T")[0];
+        if(rec.vlocity_ins__Status__c==='Pending Signature'){
+          rec.isSendDocument = false;
+        }else{
+          rec.isSendDocument = true;
+        }
+      })
+      this.adobePdfList=local;
+    } else if (error) {
+      console.log("Trailling docs error",JSON.stringify(error));
+    }
+  }
+
+  // @wire( getRecord, { recordId: '0012E00001tjmWVQAY', fields: [SEND_PDF_STATUS], optionalFields: [] })
+  // wiredAccount({error,data}){
+  //   if(data){
+  //     console.log("Account data",data.fields.Send_PDF_Status__c.value.split("&quot;").join("\""));
+  //     console.log("Account data",JSON.parse( data.fields.Send_PDF_Status__c.value.split("&quot;").join("\"")));
+  //     this.adobePdfList= JSON.parse(data.fields.Send_PDF_Status__c.value.split("&quot;").join("\""));
+  //   }else if(error){
+  //     console.log("Account error", error);
+  //   }
+  // }
+
+  // get sendPDFStatus() {
+  //   return getFieldValue(this.account.data, SEND_PDF_STATUS);
+  // }
+
   @wire(fetchAccountBillings, { accountId: "$recordId" }) accountBilling({
     error,
     data
@@ -151,8 +193,8 @@ export default class AccountTabs extends LightningElement {
   }) {
     if (data) {
       this.statusCategoryList = [];
-      data.forEach(status => {
-        this.statusCategoryList.push({'name':status});
+      JSON.parse(data).forEach(status => {
+        this.statusCategoryList.push({'name':status.CategoryName,'class':status.Status.toLowerCase()});
       });
     } else if (error) {
       console.log(JSON.stringify(error));
@@ -314,19 +356,45 @@ export default class AccountTabs extends LightningElement {
   //@wire(getAgreementId)
   //test;
   handleClick(event) {
-      const con=confirm("Are you sure?");
-      if(con){
+        const evt = new ShowToastEvent({
+          title: 'Sent Document for Signature',
+          message: 'You have successfully sent the document',
+          variant:'success',
+      });
+      this.dispatchEvent(evt);
         const index=event.target.dataset.id;
-        this.adobePdfList[index].resend=true;
-        this.adobePdfList[index].status="Pending Signature";
+        this.adobePdfList[index].isSendDocument=true;
+        this.adobePdfList[index].vlocity_ins__Status__c="Waiting for Signature";
         console.log("Inside handleclick");
-        getAgreementId({ accountId: '0012E00001tjmWVQAY' }).then(result=>{
+        //update testing
+        const fields = {};
+        fields[ID_FIELD.fieldApiName] =  this.adobePdfList[index].Id;
+        fields[SEND_PDF_STATUS.fieldApiName] = "Waiting for Signature";
+        const recordInput = { fields };
+        updateRecord(recordInput)
+        .then(() => {
+            // this.dispatchEvent(
+            //     new ShowToastEvent({
+            //         title: 'Success',
+            //         message: 'Contact updated',
+            //         variant: 'success'
+            //     })
+            // );
+            // Display fresh data in the form
+            return refreshApex(this.account);
+        })
+        .catch(error => {
+            console.log("error",error);
+        });
+        //end of update
+
+        getAgreementId({ 'accountId': '0012E00001tjmWVQAY', 'docNumber':Number.parseInt(index)+1}).then(result=>{
           console.log(result);
           //isSendDocument = true;
         }).catch(error =>{
           console.log(error);
         });
-      }
+      
     }
 
     get handleAgreementStatus() {

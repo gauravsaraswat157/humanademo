@@ -1,4 +1,5 @@
 <template>
+ 
   <lightning-layout class="account-status-grid">
     <lightning-layout-item
       padding="around-small"
@@ -261,27 +262,27 @@
           </thead>
           <tbody>
             <template for:each={adobePdfList} for:item="i" for:index="index" >
-              <tr key={i.name} class="slds-hint-parent">
+              <tr key={i.Id} class="slds-hint-parent">
                 <th data-label="Opportunity Name" scope="row">
                   <div class="slds-truncate" title="Cloudhub">
-                    {i.name}
+                    {i.Name}
                   </div>
                 </th>
                 <th data-label="Opportunity Name" scope="row">
                   <div class="slds-truncate" title="Cloudhub">
-                    {i.date}
+                    {i.LastModifiedDate}
                   </div>
                 </th>
                 <th data-label="Opportunity Name" scope="row">
                     <div class="slds-truncate" title="Cloudhub">
-                      {i.status}
+                      {i.vlocity_ins__Status__c}
                     </div>
                   </th>
                 <td data-label="Account Name">
                   <div class="slds-truncate slds-button" title="Cloudhub">
-                      <a if:false={i.resend} href="javascript:void(0);" data-id={index}  class={i.isSendDocument} onclick={handleClick} >Send For Signature</a>
-                    <template if:true={i.resend}>
-                      <a  data-status={i.status} style="color: #c23934" href="javascript:void(0);">Resend Document</a>
+                      <a if:false={i.isSendDocument} href="javascript:void(0);" style="color: white;background : #1c5b2c" data-id={index}  class={i.isSendDocument} onclick={handleClick} >Send For Signature</a>
+                    <template if:true={i.isSendDocument}>
+                      <a  data-status={i.status} onclick={handleClick} data-id={index} style="color: #1c5b2c" href="javascript:void(0);">Resend Document</a>
                     </template>
                   </div>
                 </td>
@@ -296,6 +297,46 @@
                 width: 100%;
                 height: 1107px;
                 border: none;"></iframe>
+                
+      <!--div style="height: 300px;overflow: auto" class="data-table-wrapper">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered pdf-table">
+          <thead>
+            <tr class="slds-line-height_reset">
+              <th class="header-custom" scope="col">
+                <div class="slds-truncate" title="Name">Name</div>
+              </th>
+              <th class="header-custom" scope="col">
+                  <div class="slds-truncate" title="Status">Status</div>
+                </th>
+              <th class="header-custom" scope="col">
+                <div class="slds-truncate" title="Action">Action</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={adobePdfList} for:item="i" >
+              <tr key={i.name} class="slds-hint-parent">
+                <th data-label="Opportunity Name" scope="row">
+                  <div class="slds-truncate" title="Cloudhub">
+                    {i.name}
+                  </div>
+                </th>
+                <th data-label="Opportunity Name" scope="row">
+                    <div class="slds-truncate" title="Cloudhub">
+                      {i.status}
+                    </div>
+                  </th>
+                <td data-label="Account Name">
+                  <div class="slds-truncate" title="Cloudhub">
+                      <a class="slds-button" href="javascript:void(0);">Send</a>
+
+                  </div>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>-->
     </lightning-tab>
   </lightning-tabset>
 </template>
