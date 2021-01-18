@@ -1,0 +1,14 @@
+.THIS {
+}
+
+.THIS .linkText{
+    color: #e97437;
+}
+
+.THIS .boxHeading{
+    color: #747e82;
+}
+
+.THIS .shadow{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.40);
+}

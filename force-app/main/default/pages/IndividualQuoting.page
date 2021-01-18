@@ -1,0 +1,44 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false" docType="html-5.0">
+    
+    
+
+   
+    
+    <div class="trans-header header">
+        <div class="header-logo">
+            <img src="https://forceiq-dev19--c.visualforce.com/resource/1573177659000/EmblemHealth_Header"/>
+        </div>
+        
+        <div class="header-menu">
+            <ul>
+                <li><img src="https://forceiq-dev19--c.visualforce.com/resource/1573179776000/Search"/> Search</li>
+                <li><img src="https://forceiq-dev19--c.visualforce.com/resource/1573179776000/Login"/> Sign In</li>
+                <li><img src="https://forceiq-dev19--c.visualforce.com/resource/1573179776000/Cart"/> Cart</li>
+                <li><img src="https://forceiq-dev19--c.visualforce.com/resource/1573179776000/English"/> English</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="vlocity via-slds broker-contract" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ng-app="IndividualQuoting">
+        <vlocity_ins:BusinessProcessComponent strOmniScriptType="Individual"
+            strOmniScriptSubType="Quoting"
+            strOmniScriptLang="English"
+            previewMode="{!$CurrentPage.parameters.previewEmbedded}"
+            verticalMode="{!$CurrentPage.parameters.verticalMode}"
+            strOmniScriptId="{!$CurrentPage.parameters.designerPreviewId}"
+            scriptLayout="newport"
+            />
+            
+        <c:TransStepChart />
+
+        <script type="text/javascript">
+            var modules = ['vlocity-business-process'];
+            var app = angular.module('IndividualQuoting', modules);            
+        </script>
+        
+        
+        
+              
+    </div>
+    <vlocity_ins:VFActionFunction /> 
+</apex:page>

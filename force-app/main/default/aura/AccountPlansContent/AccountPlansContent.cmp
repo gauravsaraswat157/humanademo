@@ -1,0 +1,18 @@
+<aura:component controller="AccountContractsController">
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="dtData" type="LIST"/>
+    <aura:attribute name="dataTableColumns" type="string" default=""/>
+    <lightning:accordion aura:id="accordion">
+        <aura:iteration items="{!v.dtData}" var="cont">
+            <lightning:accordionSection name="{!cont.key}" label="{!cont.key}">
+                <lightning:datatable data="{!cont.value}" 
+                                     columns="{!v.dataTableColumns}" 
+                                     keyField="Id"
+                                     hideCheckboxColumn="true"
+                                     />
+            </lightning:accordionSection>
+        </aura:iteration>
+    </lightning:accordion>
+</aura:component>

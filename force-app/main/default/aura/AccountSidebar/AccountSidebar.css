@@ -1,0 +1,20 @@
+.THIS {
+}
+
+.THIS .accName lightning-formatted-text {
+    font-size:30px;
+    color: #52247e;
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.THIS .themeClr, .THIS .themeClr lightning-formatted-text {
+    color: #747e82;
+}
+
+.THIS .themeClr span{
+    font-weight: bold;
+}
+
+.THIS .contactHeader{
+    border-bottom: 2px solid #d4d4d4;
+}

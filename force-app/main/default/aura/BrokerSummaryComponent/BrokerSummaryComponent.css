@@ -1,0 +1,60 @@
+.THIS.container {
+    border: 1px solid #d8dde6;
+    margin: 10px 0 20px 0;
+}
+.THIS .custom-box{
+    background-color: #f4f6f9;
+    padding: 2rem;
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+    text-align: center;
+    max-height:350px;
+    height:350px;
+}
+.THIS .flex-container{
+    display: flex;
+  	flex-direction: row;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.THIS .flex-container > div {
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+}
+.THIS .midNumber{
+  border-left: 1px solid black;
+  border-right: 1px solid black;  
+}
+.THIS .headerTextLeft{
+    float:left;
+}
+.THIS .headerTextRight{
+    float:right;
+}
+.THIS .padding-none{
+    padding : 0px;
+}
+.THIS .new{
+    background-color : #A8A5A5;
+}
+.THIS .btn{
+    background-color: #71296B;
+    border: none;
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.THIS .btn1{
+    color: #710CA7;
+}
+.THIS .btn2{
+    color: white;
+    background-color: #710CA7; 
+}

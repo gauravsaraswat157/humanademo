@@ -1,0 +1,59 @@
+<aura:component access="global" >
+    <aura:attribute name="recordId" type="Id"/>
+    
+    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+        
+        <div class="slds-grid slds-wrap slds-theme_default slds-p-around--medium">
+            <div class="slds-size--1-of-1">
+                <lightning:outputField class="slds-truncate slds-text-heading_large accName" variant="label-hidden" fieldName="Name" />
+                <div class="slds-grid slds-wrap slds-grid_align-space slds-grid--vertical-stretch">
+                    <div class="slds-size--1-of-5 slds-align_absolute-center">
+                        <lightning:icon iconName="utility:info" alternativeText="Info" />
+                    </div>
+                    <div class="slds-size--4-of-5">
+                        <lightning:outputField fieldName="Description" class="themeClr"/>
+                    </div>
+                    <div class="slds-size--1-of-5 slds-align_absolute-center">
+                        <lightning:icon iconName="utility:company" alternativeText="Industry" />
+                    </div>
+                    <div class="slds-size--4-of-5">
+                        <lightning:outputField fieldName="Industry" class="themeClr"/>
+                    </div>
+                    <div class="slds-size--1-of-5 slds-align_absolute-center">
+                        <lightning:icon iconName="utility:call" alternativeText="Phone" />
+                    </div>
+                    <div class="slds-size--4-of-5">
+                        <lightning:outputField fieldName="Phone" class="themeClr"/>
+                    </div>
+                    <div class="slds-size--1-of-5 slds-align_absolute-center">
+                        <lightning:icon iconName="utility:location" alternativeText="Location" />
+                    </div>
+                    <div class="slds-size--4-of-5">
+                        <lightning:outputField fieldName="BillingAddress"  class="themeClr"/>
+                    </div>
+                    <div class="slds-size--1-of-1 contactHeader">
+                        <b><ui:outputText value="Primary Contact" class="themeClr"/></b>
+                    </div>
+                    <div class="slds-size--1-of-5 slds-align_absolute-center">
+                        <lightning:icon iconName="utility:people" alternativeText="Contact" />
+                    </div>
+                    <div class="slds-size--4-of-5">
+                        <lightning:outputField fieldName="vlocity_ins__PrimaryContactId__c" class="themeClr"/>
+                    </div>
+                    <div class="slds-size--1-of-5 slds-align_absolute-center">
+                        <lightning:icon iconName="utility:call" alternativeText="Phone" />
+                    </div>
+                    <div class="slds-size--4-of-5">
+                        <lightning:outputField fieldName="Primary_Contact_s_Phone__c" class="themeClr"/>
+                    </div>
+                    <div class="slds-size--1-of-5 slds-align_absolute-center">
+                        <lightning:icon iconName="utility:email" alternativeText="Email" />
+                    </div>
+                    <div class="slds-size--4-of-5">
+                        <lightning:outputField fieldName="Primary_Contact_s_Email__c" class="themeClr"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning:recordViewForm>
+</aura:component>

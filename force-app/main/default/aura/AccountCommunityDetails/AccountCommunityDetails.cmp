@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <div class="slds-grid slds-wrap slds-theme_shade slds-grid_align-space slds-grid--vertical-stretch">
+        <div class="slds-size--1-of-1  slds-theme_default slds-large-size--3-of-12 slds-m-around--medium shadow">
+            <c:AccountSidebar recordId="{!v.recordId}"/>
+        </div>
+        <div class="slds-size--1-of-1  slds-theme_default slds-large-size--8-of-12 slds-m-around--medium shadow">
+            <c:AccountContent recordId="{!v.recordId}"/>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-theme_shade slds-grid_align-space slds-grid--vertical-stretch">
+        <div class="slds-size--1-of-1 slds-m-around--medium">
+            <c:AccountFooter recordId="{!v.recordId}"/>
+        </div>
+    </div>
+</aura:component>

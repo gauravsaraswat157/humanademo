@@ -3,9 +3,7 @@ import { LightningElement, track, wire, api } from "lwc";
 import fetchAccountPolicies from "@salesforce/apex/HumanaUtility.fetchAccountPolicies";
 import fetchAccountBillings from "@salesforce/apex/HumanaUtility.fetchAccountBillings";
 import fetchAccountEmployees from "@salesforce/apex/HumanaUtility.fetchAccountEmployees";
-import fetchStatusCategories from "@salesforce/apex/HumanaUtility.fetchStatusCategories";
 import fetchAccountQuotes from "@salesforce/apex/HumanaUtility.fetchAccountQuotes";
-import getAgreementId from "@salesforce/apex/SendAgreement.getAgreementId";
 import { updateRecord } from "lightning/uiRecordApi";
 import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
@@ -47,22 +45,9 @@ const columns = [
   }
 ];
 
-const statusCategoryList = [
-  {class : "completed", name: "Product selected"},
-  {class : "skipped", name: "Affordability review"},
-  {class : "completed document dotted", name: "KFI generated"},
-  {class : "current hide", name: "Product recommended"},
-  {class : "hide", name: "Suitability generated"},
-  {class : "", name: "Product chosen"},
-  {class : "", name: "Application Sent"},
-  
-]
-
 /*//rowActions: actions*/
 const employeesColumns = [
   { label: "Name", fieldName: "Name" },
-  { label: "Date of Birth", fieldName: "Birthdate", type: "birthdate" },
-  { label: "Gender", fieldName: "vlocity_ins__Gender__c", type: "gender" },
   { label: "Phone", fieldName: "Phone", type: "phone" },
   { label: "Email", fieldName: "Email", type: "email" }
 ];
@@ -87,14 +72,10 @@ export default class AccountTabs extends LightningElement {
   @track employeesColumns = employeesColumns;
   @track quotesColumns = quotesColumns;
   @track billingColumns = billingColumns;
-  @track statusCategoryList = statusCategoryList;
   @track record = {};
   @track draftValues = [];
   @track accountId = "0012w000002uqYLAAY";
-  // @api recordId='0012E00001tjmWVQAY';
-  @api recordId='0012E00001tjmWVQAY';
-  @track templateId='a6i2E000000wqqcQAA';
-  @track masterId='0012E00001oz23OQAQ';
+  @api recordId;
   @track accountPolicyData;
   @track totalMonthlyPremium = 0;
   @track activeEmployees = 0;
@@ -102,10 +83,8 @@ export default class AccountTabs extends LightningElement {
   @track accountBillingData;
   @track accountEmployeesData;
   @track accountQuotesData;
-  @track agreementId;
   @track isMedicalDataAvailable = false;
   @track isDentalDataAvailable = false;
-  @track isSendDocument = false;
   @track isaccountBillingDataAvailable = false;
   @track isaccountEmployeesDataAvailable = false;
   @track isaccountQuotesDataAvailable = false;
@@ -145,20 +124,6 @@ export default class AccountTabs extends LightningElement {
     }
   }
 
-  @wire(fetchStatusCategories, { accountId: "$recordId" }) categoriesData({
-    error,
-    data
-  }) {
-    if (data) {
-      this.statusCategoryList = [];
-      data.forEach(status => {
-        this.statusCategoryList.push({'name':status});
-      });
-    } else if (error) {
-      console.log(JSON.stringify(error));
-    }
-  }
-
   @wire(fetchAccountEmployees, { accountId: "$recordId" }) accountEmployees({
     error,
     data
@@ -190,21 +155,6 @@ export default class AccountTabs extends LightningElement {
     }
   }
 
-   //@wire(load, { masterId: "$recordId", templateId: "$templateId" }) accountSendDocument({
-    //error,
-   // data
-  //}) {
-   // if (data) {
-   //   console.log(JSON.stringify(data));
-   //   this.agreementId = data;
-   //   if (this.agreementId.length > 0) {
-   //     this.isSendDocument = true;
-   //   }
-  //  } else if (error) {
-  //    console.log(JSON.stringify(error));
-  //  }
- // }
-
   connectedCallback() {
     // Promise.all([
     //   loadStyle(this, humanaCSS)
@@ -212,91 +162,6 @@ export default class AccountTabs extends LightningElement {
     //     console.log('CSS Loaded');
     // });
   }
-
-  @track
-  adobePdfList=[{
-    name:"Group Maintence Request",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Agent Overview/Plan Overview Document Template",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Employer Election form(EEF) for all Spending acounts",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Pending Signature",
-    resend : true
-
-  },{
-    name:"Employer HSA Contribution check and list form",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Employer Overview/Plan Overview Document Temlate",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"FSA and FSA with a PCA PMA - Humana COBRA Language",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"FSA and FSA with a PCA PMA - Outsourced COBRA Language",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Multilocation Form",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"PCA PMA - Humana COBRA Language",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"PCA PMA - Outsourced COBRA Language",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Premimum Only Plan Application",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Humana ELigibility Certification Form",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Humana Risk Assesssment Form (Groups 50+ only)",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Self Administration Agreement",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Full-Time Employeement Questionaries",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"HumanaLife Employer Acknowlwdgement",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  }];
 
   handleRowAction(event) {
     const actionName = event.detail.action.name;
@@ -311,30 +176,6 @@ export default class AccountTabs extends LightningElement {
       default:
     }
   }
-  //@wire(getAgreementId)
-  //test;
-  handleClick(event) {
-      const con=confirm("Are you sure?");
-      if(con){
-        const index=event.target.dataset.id;
-        this.adobePdfList[index].resend=true;
-        this.adobePdfList[index].status="Pending Signature";
-        console.log("Inside handleclick");
-        getAgreementId({ accountId: '0012E00001tjmWVQAY' }).then(result=>{
-          console.log(result);
-          //isSendDocument = true;
-        }).catch(error =>{
-          console.log(error);
-        });
-      }
-    }
-
-    get handleAgreementStatus() {
-      console.log("Status of the doc ",this);
-      return 1 === 'Completed';
-    }
-    
-  
 
   viewAccount(accountId) {
     console.log(accountId);

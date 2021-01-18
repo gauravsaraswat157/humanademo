@@ -11,7 +11,7 @@ const columns = [
     { label: 'Group name', type: 'button', typeAttributes:{ label: { fieldName: 'groupName' }, name: 'view_account', class: 'btn_acct'}},
     { label: 'Quote no.', fieldName: 'quoteNumber' },
     { label: 'Effective date', fieldName: 'effectiveDate', type: 'date' },
-    { label: 'Group size', fieldName: 'caseSize' },
+    { label: 'Case size', fieldName: 'caseSize' },
     { label: 'Type', fieldName: 'type' },
     { label: 'Lines', fieldName: 'lines' },
     { label: 'Status', fieldName: 'status' },

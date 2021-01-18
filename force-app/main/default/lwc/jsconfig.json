@@ -3,224 +3,218 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/humanaCss": [
-                "humanaCss/humanaCss.js"
-            ],
-            "c/humanaCarousel": [
-                "humanaCarousel/humanaCarousel.js"
-            ],
-            "c/humanaDemoHeader": [
-                "humanaDemoHeader/humanaDemoHeader.js"
-            ],
-            "c/cfTestCard": [
-                "cfTestCard/cfTestCard.js"
-            ],
-            "c/humanaDemoFooter": [
-                "humanaDemoFooter/humanaDemoFooter.js"
-            ],
-            "c/humanaInternalDetailPageHeader": [
-                "humanaInternalDetailPageHeader/humanaInternalDetailPageHeader.js"
-            ],
-            "c/cfTestCardLayout": [
-                "cfTestCardLayout/cfTestCardLayout.js"
-            ],
-            "c/humanaFooter": [
-                "humanaFooter/humanaFooter.js"
-            ],
-            "c/humanaManageGroups": [
-                "humanaManageGroups/humanaManageGroups.js"
-            ],
-            "c/humanaInternalHomePageHeader": [
-                "humanaInternalHomePageHeader/humanaInternalHomePageHeader.js"
-            ],
-            "c/datatableCustom": [
-                "datatableCustom/datatableCustom.js"
-            ],
-            "c/customNumber": [
-                "customNumber/customNumber.js"
-            ],
-            "c/humanaAccountQuickLinks": [
-                "humanaAccountQuickLinks/humanaAccountQuickLinks.js"
-            ],
-            "c/datatableCustomActions": [
-                "datatableCustomActions/datatableCustomActions.js"
-            ],
-            "c/humanaBenefitManager": [
-                "humanaBenefitManager/humanaBenefitManager.js"
-            ],
-            "c/humanaAccountReports": [
-                "humanaAccountReports/humanaAccountReports.js"
-            ],
-            "c/lookup": [
-                "lookup/lookup.js"
-            ],
-            "c/lightningDatatableCustomActions": [
-                "lightningDatatableCustomActions/lightningDatatableCustomActions.js"
-            ],
-            "c/lwcDataTable": [
-                "lwcDataTable/lwcDataTable.js"
-            ],
-            "c/lookupContainer": [
-                "lookupContainer/lookupContainer.js"
-            ],
-            "c/humanaQuoteSummary": [
-                "humanaQuoteSummary/humanaQuoteSummary.js"
-            ],
-            "c/humanaQuickLinks": [
-                "humanaQuickLinks/humanaQuickLinks.js"
-            ],
-            "c/humanaResources": [
-                "humanaResources/humanaResources.js"
-            ],
-            "c/humanaQuoteTabs": [
-                "humanaQuoteTabs/humanaQuoteTabs.js"
-            ],
-            "c/humanaQuoteEnrollHeader": [
-                "humanaQuoteEnrollHeader/humanaQuoteEnrollHeader.js"
-            ],
-            "c/humanaViewAccount": [
-                "humanaViewAccount/humanaViewAccount.js"
-            ],
-            "c/humanaSummaryWrapper": [
-                "humanaSummaryWrapper/humanaSummaryWrapper.js"
-            ],
-            "c/insActionCell": [
-                "insActionCell/insActionCell.js"
-            ],
-            "c/humanaQuoteEnrollContent": [
-                "humanaQuoteEnrollContent/humanaQuoteEnrollContent.js"
-            ],
-            "c/humanaWalletAndRewards": [
-                "humanaWalletAndRewards/humanaWalletAndRewards.js"
-            ],
-            "c/cfHumanaActionCards_2_ThePlumTreeGroup": [
-                "cfHumanaActionCards_2_ThePlumTreeGroup/cfHumanaActionCards_2_ThePlumTreeGroup.js"
-            ],
-            "c/cfHumanaActionCards_1_ThePlumTreeGroup": [
-                "cfHumanaActionCards_1_ThePlumTreeGroup/cfHumanaActionCards_1_ThePlumTreeGroup.js"
-            ],
-            "c/cfHumanaBenefitsCard_1_ThePlumTreeGroup": [
-                "cfHumanaBenefitsCard_1_ThePlumTreeGroup/cfHumanaBenefitsCard_1_ThePlumTreeGroup.js"
-            ],
-            "c/cfHumanaBenefitsCard": [
-                "cfHumanaBenefitsCard/cfHumanaBenefitsCard.js"
-            ],
-            "c/cfHumanaContactResourceCards_1_ThePlumTreeGroup": [
-                "cfHumanaContactResourceCards_1_ThePlumTreeGroup/cfHumanaContactResourceCards_1_ThePlumTreeGroup.js"
-            ],
-            "c/cfHumanaContactResourceCards": [
-                "cfHumanaContactResourceCards/cfHumanaContactResourceCards.js"
-            ],
-            "c/cfManageGroups_1_ThePlumTreeGroup": [
-                "cfManageGroups_1_ThePlumTreeGroup/cfManageGroups_1_ThePlumTreeGroup.js"
-            ],
-            "c/cfManageGroups": [
-                "cfManageGroups/cfManageGroups.js"
-            ],
-            "c/cardCanvasLayout": [
-                "cardCanvasLayout/cardCanvasLayout.js"
-            ],
-            "c/cardCanvas3x": [
-                "cardCanvas3x/cardCanvas3x.js"
-            ],
-            "c/cfBenefitManager": [
-                "cfBenefitManager/cfBenefitManager.js"
-            ],
-            "c/cardState3x": [
-                "cardState3x/cardState3x.js"
-            ],
-            "c/cfHumanaActionCards": [
-                "cfHumanaActionCards/cfHumanaActionCards.js"
-            ],
-            "c/cfBenefitManager_1_ThePlumTreeGroup": [
-                "cfBenefitManager_1_ThePlumTreeGroup/cfBenefitManager_1_ThePlumTreeGroup.js"
-            ],
-            "c/testState": [
-                "testState/testState.js"
-            ],
-            "c/cfWalletAndRewards": [
-                "cfWalletAndRewards/cfWalletAndRewards.js"
-            ],
-            "c/cfResourceCard_1_ThePlumTreeGroup": [
-                "cfResourceCard_1_ThePlumTreeGroup/cfResourceCard_1_ThePlumTreeGroup.js"
-            ],
-            "c/testOsState": [
-                "testOsState/testOsState.js"
-            ],
-            "c/commissionCard": [
-                "commissionCard/commissionCard.js"
-            ],
-            "c/cfWalletAndRewards_1_ThePlumTreeGroup": [
-                "cfWalletAndRewards_1_ThePlumTreeGroup/cfWalletAndRewards_1_ThePlumTreeGroup.js"
-            ],
-            "c/myContacts": [
-                "myContacts/myContacts.js"
-            ],
-            "c/cfMyContactCard_1_ThePlumTreeGroup": [
-                "cfMyContactCard_1_ThePlumTreeGroup/cfMyContactCard_1_ThePlumTreeGroup.js"
-            ],
-            "c/cfMyContactCard": [
-                "cfMyContactCard/cfMyContactCard.js"
-            ],
-            "c/manageGroupsCard": [
-                "manageGroupsCard/manageGroupsCard.js"
-            ],
-            "c/productCell": [
-                "productCell/productCell.js"
-            ],
-            "c/cfPayCommission_1_ThePlumTreeGroup": [
-                "cfPayCommission_1_ThePlumTreeGroup/cfPayCommission_1_ThePlumTreeGroup.js"
-            ],
-            "c/paginationComponent": [
-                "paginationComponent/paginationComponent.js"
-            ],
-            "c/cfPayCommission": [
-                "cfPayCommission/cfPayCommission.js"
-            ],
-            "c/cfQuoteEnroll_1_ThePlumTreeGroup": [
-                "cfQuoteEnroll_1_ThePlumTreeGroup/cfQuoteEnroll_1_ThePlumTreeGroup.js"
-            ],
-            "c/quoteEnrollCard": [
-                "quoteEnrollCard/quoteEnrollCard.js"
-            ],
-            "c/cfQuoteEnroll": [
-                "cfQuoteEnroll/cfQuoteEnroll.js"
-            ],
-            "c/quoteEnroll": [
-                "quoteEnroll/quoteEnroll.js"
-            ],
-            "c/cfResourceCard": [
-                "cfResourceCard/cfResourceCard.js"
-            ],
-            "c/testLayout": [
-                "testLayout/testLayout.js"
-            ],
-            "c/testCard": [
-                "testCard/testCard.js"
-            ],
-            "c/cfQuotetryagain_1_Plum": [
-                "cfQuotetryagain_1_Plum/cfQuotetryagain_1_Plum.js"
+            "c/accountTabs": [
+                "accountTabs/accountTabs.js"
             ],
             "c/actionCell": [
                 "actionCell/actionCell.js"
             ],
-            "c/accountTabs": [
-                "accountTabs/accountTabs.js"
-            ],
             "c/cardCanvas1xSlds": [
                 "cardCanvas1xSlds/cardCanvas1xSlds.js"
             ],
-            "c/humanaAccountDeligationHeader": [
-                "humanaAccountDeligationHeader/humanaAccountDeligationHeader.js"
+            "c/cardCanvas3x": [
+                "cardCanvas3x/cardCanvas3x.js"
+            ],
+            "c/cardCanvasLayout": [
+                "cardCanvasLayout/cardCanvasLayout.js"
+            ],
+            "c/cardState3x": [
+                "cardState3x/cardState3x.js"
+            ],
+            "c/cfBenefitManager": [
+                "cfBenefitManager/cfBenefitManager.js"
+            ],
+            "c/cfBenefitManager_1_ThePlumTreeGroup": [
+                "cfBenefitManager_1_ThePlumTreeGroup/cfBenefitManager_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfHumanaActionCards": [
+                "cfHumanaActionCards/cfHumanaActionCards.js"
+            ],
+            "c/cfHumanaActionCards_1_ThePlumTreeGroup": [
+                "cfHumanaActionCards_1_ThePlumTreeGroup/cfHumanaActionCards_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfHumanaActionCards_2_ThePlumTreeGroup": [
+                "cfHumanaActionCards_2_ThePlumTreeGroup/cfHumanaActionCards_2_ThePlumTreeGroup.js"
+            ],
+            "c/cfHumanaBenefitsCard": [
+                "cfHumanaBenefitsCard/cfHumanaBenefitsCard.js"
+            ],
+            "c/cfHumanaBenefitsCard_1_ThePlumTreeGroup": [
+                "cfHumanaBenefitsCard_1_ThePlumTreeGroup/cfHumanaBenefitsCard_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfHumanaContactResourceCards": [
+                "cfHumanaContactResourceCards/cfHumanaContactResourceCards.js"
+            ],
+            "c/cfHumanaContactResourceCards_1_ThePlumTreeGroup": [
+                "cfHumanaContactResourceCards_1_ThePlumTreeGroup/cfHumanaContactResourceCards_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfManageGroups": [
+                "cfManageGroups/cfManageGroups.js"
+            ],
+            "c/cfManageGroups_1_ThePlumTreeGroup": [
+                "cfManageGroups_1_ThePlumTreeGroup/cfManageGroups_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfMyContactCard": [
+                "cfMyContactCard/cfMyContactCard.js"
+            ],
+            "c/cfMyContactCard_1_ThePlumTreeGroup": [
+                "cfMyContactCard_1_ThePlumTreeGroup/cfMyContactCard_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfPayCommission": [
+                "cfPayCommission/cfPayCommission.js"
+            ],
+            "c/cfPayCommission_1_ThePlumTreeGroup": [
+                "cfPayCommission_1_ThePlumTreeGroup/cfPayCommission_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfQuoteEnroll": [
+                "cfQuoteEnroll/cfQuoteEnroll.js"
+            ],
+            "c/cfQuoteEnroll_1_ThePlumTreeGroup": [
+                "cfQuoteEnroll_1_ThePlumTreeGroup/cfQuoteEnroll_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfQuotetryagain_1_Plum": [
+                "cfQuotetryagain_1_Plum/cfQuotetryagain_1_Plum.js"
+            ],
+            "c/cfResourceCard": [
+                "cfResourceCard/cfResourceCard.js"
+            ],
+            "c/cfResourceCard_1_ThePlumTreeGroup": [
+                "cfResourceCard_1_ThePlumTreeGroup/cfResourceCard_1_ThePlumTreeGroup.js"
+            ],
+            "c/cfTestCard": [
+                "cfTestCard/cfTestCard.js"
+            ],
+            "c/cfTestCardLayout": [
+                "cfTestCardLayout/cfTestCardLayout.js"
+            ],
+            "c/cfWalletAndRewards": [
+                "cfWalletAndRewards/cfWalletAndRewards.js"
+            ],
+            "c/cfWalletAndRewards_1_ThePlumTreeGroup": [
+                "cfWalletAndRewards_1_ThePlumTreeGroup/cfWalletAndRewards_1_ThePlumTreeGroup.js"
+            ],
+            "c/commissionCard": [
+                "commissionCard/commissionCard.js"
+            ],
+            "c/customNumber": [
+                "customNumber/customNumber.js"
+            ],
+            "c/datatableCustom": [
+                "datatableCustom/datatableCustom.js"
+            ],
+            "c/datatableCustomActions": [
+                "datatableCustomActions/datatableCustomActions.js"
             ],
             "c/humanaAccountDelegation": [
                 "humanaAccountDelegation/humanaAccountDelegation.js"
             ],
-            "c/humanaGroupInstallHeader": [
-                "humanaGroupInstallHeader/humanaGroupInstallHeader.js"
+            "c/humanaAccountDeligationHeader": [
+                "humanaAccountDeligationHeader/humanaAccountDeligationHeader.js"
             ],
-            "c/humanaAccountDetailHeader": [
-                "humanaAccountDetailHeader/humanaAccountDetailHeader.js"
+            "c/humanaAccountQuickLinks": [
+                "humanaAccountQuickLinks/humanaAccountQuickLinks.js"
+            ],
+            "c/humanaAccountReports": [
+                "humanaAccountReports/humanaAccountReports.js"
+            ],
+            "c/humanaBenefitManager": [
+                "humanaBenefitManager/humanaBenefitManager.js"
+            ],
+            "c/humanaCarousel": [
+                "humanaCarousel/humanaCarousel.js"
+            ],
+            "c/humanaCss": [
+                "humanaCss/humanaCss.js"
+            ],
+            "c/humanaDemoFooter": [
+                "humanaDemoFooter/humanaDemoFooter.js"
+            ],
+            "c/humanaDemoHeader": [
+                "humanaDemoHeader/humanaDemoHeader.js"
+            ],
+            "c/humanaFooter": [
+                "humanaFooter/humanaFooter.js"
+            ],
+            "c/humanaInternalDetailPageHeader": [
+                "humanaInternalDetailPageHeader/humanaInternalDetailPageHeader.js"
+            ],
+            "c/humanaInternalHomePageHeader": [
+                "humanaInternalHomePageHeader/humanaInternalHomePageHeader.js"
+            ],
+            "c/humanaManageGroups": [
+                "humanaManageGroups/humanaManageGroups.js"
+            ],
+            "c/humanaQuickLinks": [
+                "humanaQuickLinks/humanaQuickLinks.js"
+            ],
+            "c/humanaQuoteEnrollContent": [
+                "humanaQuoteEnrollContent/humanaQuoteEnrollContent.js"
+            ],
+            "c/humanaQuoteEnrollHeader": [
+                "humanaQuoteEnrollHeader/humanaQuoteEnrollHeader.js"
+            ],
+            "c/humanaQuoteSummary": [
+                "humanaQuoteSummary/humanaQuoteSummary.js"
+            ],
+            "c/humanaQuoteTabs": [
+                "humanaQuoteTabs/humanaQuoteTabs.js"
+            ],
+            "c/humanaResources": [
+                "humanaResources/humanaResources.js"
+            ],
+            "c/humanaSummaryWrapper": [
+                "humanaSummaryWrapper/humanaSummaryWrapper.js"
+            ],
+            "c/humanaViewAccount": [
+                "humanaViewAccount/humanaViewAccount.js"
+            ],
+            "c/humanaWalletAndRewards": [
+                "humanaWalletAndRewards/humanaWalletAndRewards.js"
+            ],
+            "c/insActionCell": [
+                "insActionCell/insActionCell.js"
+            ],
+            "c/lightningDatatableCustomActions": [
+                "lightningDatatableCustomActions/lightningDatatableCustomActions.js"
+            ],
+            "c/lookup": [
+                "lookup/lookup.js"
+            ],
+            "c/lookupContainer": [
+                "lookupContainer/lookupContainer.js"
+            ],
+            "c/lwcDataTable": [
+                "lwcDataTable/lwcDataTable.js"
+            ],
+            "c/manageGroupsCard": [
+                "manageGroupsCard/manageGroupsCard.js"
+            ],
+            "c/myContacts": [
+                "myContacts/myContacts.js"
+            ],
+            "c/paginationComponent": [
+                "paginationComponent/paginationComponent.js"
+            ],
+            "c/productCell": [
+                "productCell/productCell.js"
+            ],
+            "c/quoteEnroll": [
+                "quoteEnroll/quoteEnroll.js"
+            ],
+            "c/quoteEnrollCard": [
+                "quoteEnrollCard/quoteEnrollCard.js"
+            ],
+            "c/testCard": [
+                "testCard/testCard.js"
+            ],
+            "c/testLayout": [
+                "testLayout/testLayout.js"
+            ],
+            "c/testOsState": [
+                "testOsState/testOsState.js"
+            ],
+            "c/testState": [
+                "testState/testState.js"
             ]
         }
     },
@@ -231,11 +225,6 @@
     "typeAcquisition": {
         "include": [
             "jest"
-        ]
-    },
-    "paths": {
-        "c/*": [
-            "*"
         ]
     }
 }

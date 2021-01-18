@@ -1,0 +1,142 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller = "AccountDetails">
+    <aura:attribute name = "objAccount" type = "List"/>
+    <aura:attribute name = "strSearchString" type = "string"/>
+    <aura:attribute name = "strStatus" type = "list"/>
+    <aura:attribute name="pageSize" type="Integer" default="10"/>
+    <aura:attribute name="totalSize" type="Integer"/>
+    <aura:attribute name="start" type="Integer" />
+    <aura:attribute name="end" type="Integer"/>
+    <aura:attribute name="paginationList" type="list"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="pageReference" type="Object"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:handler name = "init" value = "{!this}" action = "{!c.doInit}"/>
+    <aura:if isTrue="{!v.Spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <div style="background-color:white;">
+        <div  style="background-color:#F0F3F3;">
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;Home / Manage your groups
+            <br/><br/>
+            <h1>Manage your groups</h1>
+            <br/><p>lorem ipsum dolor sit amet, consetuctetur adipiscing elit, sed do eiusmod tempor incididunt <br/>ut labore et dolore mangana aliqua.</p>
+            <br/>
+        </div>
+        <center>
+            <div >
+                <div class="slds-form-element slds-size_1-of-3">
+                    <span onchange="{!c.searchAccounts}">
+                        <lightning:input type = "search" value="{!v.strSearchString}"  onChange = "{c.searchAccounts}" placeholder="Search by group name or group ID" iconName="utility:search"/>
+                    </span>
+                </div>
+                <div class="slds-float_right">
+                   <!-- Display {!v.start+1}->{!v.end+1}-->
+                    <lightning:button label="&lt;&lt;" disabled="{!v.start == 0}"  onclick="{!c.first}" variant="brand"/>
+                    <lightning:button label="&lt;" disabled="{!v.start == 0}"  onclick="{!c.previous}" variant = "brand"/>
+                    <lightning:button label="&gt;" disabled="{!v.end >= v.totalSize}" onclick="{!c.next}" variant = "brand"/>
+                    <lightning:button label="&gt;&gt;" disabled="{!v.end >= v.totalSize}" onclick="{!c.last}" variant = "brand"/>
+                </div>
+                <table border = "0px solid black" class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr>
+                            <th style ="background-color:#477104;color:white;">Account Name</th>
+                            <th style ="background-color:#477104;color:white;">Account ID</th>
+                            <th style ="background-color:#477104;color:white;">Status</th>
+                            <th style ="background-color:#477104;color:white;">Address</th>
+                            <th style ="background-color:#477104;color:white;">Phone</th>
+                            <th style ="background-color:#477104;color:white;">Policy End Date</th>
+                            <th style ="background-color:#477104;color:white;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items = "{!v.objAccount}" var = "item">
+                            <tr>
+                                <td>
+                                    <!-- <a href="{!'/lightning/r/Account/'+item.Id+'/view'}" target="__blank" data-recId="{!item.Id}" onclick="{!c.navigateToMyComponent}">{!item.Name}</a>-->
+                                    <a href=" " target="__blank" data-recId="{!item.Id}"  onclick="{!c.navigateToMyComponent}">{!item.Name}</a>
+                                    
+                                </td>
+                                <td>{!item.Id}</td>
+                                <td> <!--<lightning:select value = "{!item.vlocity_ins__Status__c}">
+                                <option value = "None">None</option>
+                                <aura:iteration items = "{!v.strStatus}" var = "ite">
+                                    <option value="{!ite}"><td>{!ite}</td></option>
+                                </aura:iteration>
+                            </lightning:select> --> {!item.vlocity_ins__Status__c}</td>
+                                <td>{!item.BillingCity+' '+item.BillingState+' '+ item.BillingCountry}</td>
+                                <td>{!item.Phone}</td>
+                                <td>{!item.CreatedDate}</td>
+                                <td>
+                                    <lightning:buttonMenu aura:id="menu" onselect="{! c.handleSelect }" alternativeText="Show menu">
+                                        <lightning:menuItem value="MenuItemOne" label="Request a Quote" />
+                                        <lightning:menuItem value="MenuItemTwo" label="View detailed add on rates" />
+                                        <lightning:menuItem value="MenuItemThree" label="View renewal letters"/>
+                                        <lightning:menuItem value="MenuItemFour" label="BUD Report" />
+                                        <lightning:menuItem value="MenuItemFour" label="Go365 report" />
+                                        <lightning:menuItem value="MenuItemFour" label="enroll group member" />
+                                        <lightning:menuItem value="MenuItemFour" label="ID Card center" />
+                                        <lightning:menuItem value="MenuItemFour" label="Group billing" />
+                                    </lightning:buttonMenu>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                        
+                    </tbody>
+                    
+                </table>
+                <div class="slds-float_right">
+                    <lightning:button label="&lt;&lt;" disabled="{!v.start == 0}"  onclick="{!c.first}" variant = "brand"/>
+                    <lightning:button label="&lt;" disabled="{!v.start == 0}"  onclick="{!c.previous}" variant = "brand"/>
+                    <lightning:button label="&gt;" disabled="{!v.end >= v.totalSize}" onclick="{!c.next}" variant = "brand"/>
+                    <lightning:button label="&gt;&gt;" disabled="{!v.end >= v.totalSize}" onclick="{!c.last}" variant = "brand"/>
+                </div>
+            </div>
+        </center>
+        <br/><br/>
+        <div class = " slds-box" style="background-color:#477104;height:30%">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr  style ="color:white;">
+                        <td style = "border-right: 3px solid white;padding :25px;">Agent &amp; broker</td>
+                        <td style = "border-right: 3px solid white;padding-left:10px;">About</td>
+                        <td style = "padding-left:10px;">Corporate Responsibility</td>
+                    </tr>
+                    <tr style ="color:white;">
+                        <td style = "border-right: 3px solid white;padding :25px;">Providers</td>
+                        <td style = "border-right: 3px solid white;padding-left:10px;">Company Profile</td>
+                        <td style = "padding-left:10px;">Public Responsibility</td>
+                    </tr>
+                    <tr style ="color:white;">
+                        <td style = "border-right: 3px solid white;padding :25px;" >Small Business</td>
+                        <td style = "border-right: 3px solid white;padding-left:10px;">Careers</td>
+                        <td style = "padding-left:10px;">News</td>
+                    </tr>
+                    <tr style ="color:white;">
+                        <td style = "border-right: 3px solid white;padding :25px;">Caregivers</td>
+                        <td style = "border-right: 3px solid white;padding-left:10px;">Customer Support</td>
+                        <td style = "padding-left:10px;">Investor Relation</td>
+                        
+                    </tr>
+                    <!-- <tr><td style = "border-right: 3px solid white;padding :25px;">Espanol</td></tr>-->
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</aura:component>

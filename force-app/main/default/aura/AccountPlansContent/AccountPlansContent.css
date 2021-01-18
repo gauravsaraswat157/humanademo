@@ -1,0 +1,10 @@
+.THIS {
+}
+
+.THIS .slds-accordion__summary-action, .THIS .slds-button:hover, .THIS .slds-icon-text-default{
+    color: #e97437;
+}
+
+.THIS .slds-icon-text-default{
+    fill: #e97437;
+}

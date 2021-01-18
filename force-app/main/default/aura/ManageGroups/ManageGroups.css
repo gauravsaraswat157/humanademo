@@ -1,0 +1,21 @@
+.THIS h1{
+    font-size:35px;
+    font-family: monospace;
+    color:green;
+    margin-left:20%;
+}
+.THIS.header{
+    background-color:#F0F3F3;
+}
+.THIS p{
+    font-size:15px;
+    text-align:left;
+    margin-left:20%;
+}
+.THIS.slds-spinner_container {  
+  z-index: 10000;
+  position: fixed;   
+}
+.THIS .pgButton{
+    background-color:#96FB6E;
+}

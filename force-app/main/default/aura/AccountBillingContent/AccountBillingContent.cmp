@@ -1,0 +1,3 @@
+<aura:component >
+	<b><ui:outputText value="Billing details will be here." class="slds-align_absolute-center"/></b>
+</aura:component>

@@ -30,9 +30,6 @@
 .account-delegate .account-list{
     position: relative;
 }
-.account-delegate .account-list:not(:last-child){
-    padding-bottom: 30px;
-}
 .account-delegate .account-list ul{
     clear: both;
 }

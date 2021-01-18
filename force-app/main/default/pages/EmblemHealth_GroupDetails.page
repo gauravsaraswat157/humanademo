@@ -1,0 +1,28 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false" docType="html-5.0">
+    <apex:stylesheet value="{!$Resource.AngularDataTableCss}"/>
+    
+    <div class="vlocity via-slds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ng-app="EmblemHealthGroupDetails">
+    
+        <vlocity_ins:BusinessProcessComponent strOmniScriptType="Test"
+            strOmniScriptSubType="Test"
+            strOmniScriptLang="English"
+            previewMode="{!$CurrentPage.parameters.previewEmbedded}"
+            verticalMode="{!$CurrentPage.parameters.verticalMode}"
+            strOmniScriptId="{!$CurrentPage.parameters.designerPreviewId}"
+            strCSSFileList="[]"
+            scriptLayout="newport"
+            />
+            
+        
+        <apex:includeScript value="{!$Resource.JqueryDatatables}"/>
+        <apex:includeScript value="{!$Resource.AngularDataTable}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+        
+        <script type="text/javascript">
+            var modules = ['vlocity-business-process', 'ngSanitize', 'datatables'];
+            var myModule = angular.module('EmblemHealthGroupDetails', modules);
+        </script>
+
+    </div>
+    <vlocity_ins:VFActionFunction />
+</apex:page>

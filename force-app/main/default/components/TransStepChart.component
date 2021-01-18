@@ -1,0 +1,28 @@
+<apex:component >
+  <script type="text/ng-template" id="vlcStepChart.html">
+    <div class="vlc-step-chart">
+      <div class="trans-left-panel-header">
+          <p>Welcome To</p>
+          <h1>Individual <br/>Shop & Enroll</h1>
+      </div>
+      
+      <div class="trans-progress-bar">
+          <p>Your Progress</p>
+          <h4>{{bpTree.children[0].open == true ? '20%': bpTree.children[1].open == true ? '35%' : bpTree.children[2].open == true ? '50%' : '100%'}} Complete</h4>
+          <div class="progress">
+                <div class="bar" 
+                  ng-style="{ 'width': bpTree.children[0].open == true ? '50px': bpTree.children[1].open == true ? '85px' : bpTree.children[2].open == true ? '120px' : '160px'}">
+                </div>
+           </div>
+      </div>
+      
+      <div class="wrapper">
+        <ul class="StepProgress">
+            
+          <li class="StepProgress-item is-done " ng-class="{ current : step.open }" ng-repeat="step in bpTree.children" ng-if="step.Type = 'Step'"><strong>{{step.propSetMap.chartLabel}}</strong></li>
+          
+        </ul>
+      </div>
+    </div>
+  </script>
+</apex:component>

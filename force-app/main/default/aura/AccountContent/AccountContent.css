@@ -1,0 +1,41 @@
+.THIS {
+}
+
+.THIS .keyInfoContainer div{
+    padding: 0px;
+}
+
+.THIS .keyInfoContainer {
+    font-weight: bold;
+    color: #747e82;
+}
+
+.THIS .keyInfo lightning-formatted-text,.THIS .keyInfo lightning-formatted-number{
+    font-size:24px;
+    min-height:36px;
+    color: #e97437;
+}
+
+.THIS .slds-is-active a, .THIS .slds-is-active a:hover{
+    font-weight: bold!Important;
+    color: #e97437!Important;
+}
+
+.THIS .slds-tabs_default__item.slds-active:after,.THIS .slds-tabs_default__item.slds-is-active:after,.THIS .slds-tabs--default__item.slds-active:after,.THIS .slds-tabs--default__item.slds-is-active:after {
+    background-color: #e97437;
+    height: 0.1875rem;
+}
+
+.THIS .slds-tabs_default__item a, .THIS .slds-tabs_default__item:hover a{
+    text-decoration: inherit!Important;
+    cursor: pointer;
+    line-height: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    color: #e97437;
+}
+
+.THIS .borderLR{
+    border-right: 2px solid #d4d4d4;
+    border-left: 2px solid #d4d4d4;
+}
