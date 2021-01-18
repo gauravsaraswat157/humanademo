@@ -1,0 +1,107 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    <!--attrubutes-->
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="data" type="Object"/>
+    
+    <!--handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.initialiseTabledata}"/>
+    <div class="container">
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem padding="around-small" size="12">
+                <lightning:layout>
+                    <lightning:layoutItem padding="around-small" size="6">
+                        <div class="custom-box" style="background-color:white;">
+                            <span style="text-align:left !important; font-size:large; color:#9C9A9D;">Guide Quotes to Completion</span><br/>
+                            <div class="flex-container">
+                                <div style="padding:4px;">
+                                    <p style="color:#F57707; font-size:80px;">18</p>
+                                    <p class="textClass">SUBMISSIONS</p>
+                                    <p>A solid start!</p>
+                                </div>
+                                <div style="padding:4px; border-left:1px solid gray;border-right:1px solid gray;">
+                                    <p style="color:#F57707; font-size:80px;">12</p>
+                                    <p>PENDING</p>
+                                    <p>Be sure to review!</p>
+                                </div>
+                                <div style="padding:4px;">
+                                    <p style="color:#F57707; font-size:80px;">23</p>
+                                    <p>APPROVED</p>
+                                    <p>Time for next steps!</p>
+                                </div>
+                            </div>
+                            <div style="margin-top:40px;">
+                                <ul class="slds-has-dividers_around-space">
+                                    <li class="slds-item" style="background-color:#710CA7; text-align:center; color:White;">
+                                        VIEW QUOTES
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="3">
+                        <div class="custom-box">
+                            <div>
+                                <ul class="slds-list--vertical">
+                                    <li class="slds-item">
+                                        <p>
+                                            <span style="color:#F57707; font-size:60px;">$1,900</span>
+                                            <br/>
+                                            DECEMBER COMMISSION
+                                        </p>
+                                    </li>
+                                    <li class="slds-list__item slds-has-divider--top-space">
+                                        <p>
+                                            <span style="color:#F57707; font-size:60px;">$20,141</span>
+                                            <br/>
+                                            YTD COMMISSION
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="slds-m-top_x-large">
+                                <ul class="slds-has-dividers_around-space">
+                                    <li class="slds-item" style="background-color:#710CA7; text-align:center; color:White;">
+                                        VIEW COMMISSIONS
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="3">
+                        <div class="custom-box" style="background-color:white;">
+                            <div>
+                            <p style="color:#F57707; font-size:108px;" class="slds-m-top_xx-large">3</p>
+                            <p class="slds-m-top_xx-small slds-m-bottom_x-large">UPCOMING RENEWALS</p>
+                            </div>    
+                            <div class="slds-m-top_xxx-large">
+                                <ul class="slds-has-dividers_around-space">
+                                    <li class="slds-item" style="background-color:#710CA7; text-align:center; color:White;">
+                                        VIEW RENEWALS
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="12">
+                <!--Table comes Here -->
+                <lightning:tabset>
+                    <lightning:tab label="Recent quotes" id="recentQuotes" class="padding-none" onactive="{!c.handleActive}">
+                        <c:BrokerSummaryTable columns="{!v.columns}" data="{!v.data}"/>
+                    </lightning:tab>
+                    <lightning:tab label="Quotes in underwriting" id="quotesUnderwriting" onactive="{!c.handleActive}">
+                        <c:BrokerSummaryTable columns="{!v.columns}" data="{!v.data}"/>
+                    </lightning:tab>
+                    <lightning:tab label="Case installation status" id="caseInstallation" onactive="{!c.handleActive}">
+                        <c:BrokerSummaryTable columns="{!v.columns}" data="{!v.data}"/>
+                    </lightning:tab>
+                    <lightning:tab label="Upcoming renewals" id="upcomingRenewals" onactive="{!c.handleActive}">
+                        <c:BrokerSummaryTable columns="{!v.columns}" data="{!v.data}"/>
+                    </lightning:tab>
+                </lightning:tabset>
+            </lightning:layoutItem>
+            </lightning:layout>
+    </div>
+</aura:component>

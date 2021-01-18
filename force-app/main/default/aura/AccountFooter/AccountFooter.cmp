@@ -1,0 +1,83 @@
+<aura:component access="global" >
+    <aura:attribute name="recordId" type="Id"/>
+    
+    <div class="slds-grid slds-wrap slds-p-around--medium slds-grid_align-space">
+        <div class="slds-size--1-of-1">
+            <div class="shadow slds-theme_default">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title boxHeading">
+                                <span><b>Quick Links</b></span>
+                            </h2>
+                        </div>
+                        <div class="slds-no-flex">
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-p-around--small">
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">Valid detailed add-on rates &#8594;</a>
+                        </div>
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">View all certificates of coverage &#8594;</a>
+                        </div>
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">View all policies &#8594;</a>
+                        </div>
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">Id card center &#8594;</a>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-card__footer">
+                </footer>
+            </div>
+        </div>
+
+        <div class="slds-size--1-of-1 slds-m-top--medium">
+            <div class="shadow slds-theme_default">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title boxHeading">
+                                <span><b>Reports</b></span>
+                            </h2>
+                        </div>
+                        <div class="slds-no-flex">
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-p-around--small">
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">HRBA reports &#8594;</a>
+                        </div>
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">e-plan compass reports &#8594;</a>
+                        </div>
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">Go365 reports &#8594;</a>
+                        </div>
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">WEI reports &#8594;</a>
+                        </div>
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">Web registration reports &#8594;</a>
+                        </div>
+                        <div class="slds-size--1-of-1 slds-large-size--1-of-4">
+                            <a class="slds-text-link--reset linkText">Late pay notice reports &#8594;</a>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-card__footer">
+                </footer>
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -3,18 +3,10 @@ import { LightningElement, track, wire, api } from "lwc";
 import fetchAccountPolicies from "@salesforce/apex/HumanaUtility.fetchAccountPolicies";
 import fetchAccountBillings from "@salesforce/apex/HumanaUtility.fetchAccountBillings";
 import fetchAccountEmployees from "@salesforce/apex/HumanaUtility.fetchAccountEmployees";
-import fetchStatusCategories from "@salesforce/apex/HumanaUtility.fetchStatusCategories";
 import fetchAccountQuotes from "@salesforce/apex/HumanaUtility.fetchAccountQuotes";
-import getAgreementId from "@salesforce/apex/SendAgreement.getAgreementId";
-import { updateRecord, getRecord, getFieldValue } from "lightning/uiRecordApi";
-import SEND_PDF_STATUS from '@salesforce/schema/vlocity_ins__TrailingDocumentPlaceholder__c.vlocity_ins__Status__c';
+import { updateRecord } from "lightning/uiRecordApi";
 import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import ID_FIELD from '@salesforce/schema/vlocity_ins__TrailingDocumentPlaceholder__c.Id';
-import fetchTrailingDocumets from "@salesforce/apex/TrailingDocuments.fetchTrailingDocumets";
-
-
-
 // import { loadStyle } from 'lightning/platformResourceLoader';
 // import humanaCSS from '@salesforce/resourceUrl/humanaResource';
 
@@ -53,22 +45,9 @@ const columns = [
   }
 ];
 
-const statusCategoryList = [
-  {class : "completed", name: "Product selected"},
-  {class : "skipped", name: "Affordability review"},
-  {class : "completed document dotted", name: "KFI generated"},
-  {class : "current hide", name: "Product recommended"},
-  {class : "hide", name: "Suitability generated"},
-  {class : "", name: "Product chosen"},
-  {class : "", name: "Application Sent"},
-  
-]
-
 /*//rowActions: actions*/
 const employeesColumns = [
   { label: "Name", fieldName: "Name" },
-  { label: "Date of Birth", fieldName: "Birthdate", type: "birthdate" },
-  { label: "Gender", fieldName: "vlocity_ins__Gender__c", type: "gender" },
   { label: "Phone", fieldName: "Phone", type: "phone" },
   { label: "Email", fieldName: "Email", type: "email" }
 ];
@@ -93,14 +72,10 @@ export default class AccountTabs extends LightningElement {
   @track employeesColumns = employeesColumns;
   @track quotesColumns = quotesColumns;
   @track billingColumns = billingColumns;
-  @track statusCategoryList = statusCategoryList;
   @track record = {};
   @track draftValues = [];
   @track accountId = "0012w000002uqYLAAY";
-  // @api recordId='0012E00001tjmWVQAY';
-  @api recordId='0012E00001tjmWVQAY';
-  @track templateId='a6i2E000000wqqcQAA';
-  @track masterId='0012E00001oz23OQAQ';
+  @api recordId;
   @track accountPolicyData;
   @track totalMonthlyPremium = 0;
   @track activeEmployees = 0;
@@ -108,10 +83,8 @@ export default class AccountTabs extends LightningElement {
   @track accountBillingData;
   @track accountEmployeesData;
   @track accountQuotesData;
-  @track agreementId;
   @track isMedicalDataAvailable = false;
   @track isDentalDataAvailable = false;
-  @track isSendDocument = false;
   @track isaccountBillingDataAvailable = false;
   @track isaccountEmployeesDataAvailable = false;
   @track isaccountQuotesDataAvailable = false;
@@ -136,42 +109,6 @@ export default class AccountTabs extends LightningElement {
     }
   }
 
-  @wire(fetchTrailingDocumets, { 'accountId': "$recordId" }) trailingDocumets({
-    error,
-    data
-  }) {
-    if (data) {
-      console.log("Trailling docs",JSON.stringify(data));
-      const local=JSON.parse(JSON.stringify(data));
-      local.forEach(rec=>{
-        rec.LastModifiedDate=rec.LastModifiedDate.split("T")[0];
-        if(rec.vlocity_ins__Status__c==='Pending Signature'){
-          rec.isSendDocument = false;
-        }else{
-          rec.isSendDocument = true;
-        }
-      })
-      this.adobePdfList=local;
-    } else if (error) {
-      console.log("Trailling docs error",JSON.stringify(error));
-    }
-  }
-
-  // @wire( getRecord, { recordId: '0012E00001tjmWVQAY', fields: [SEND_PDF_STATUS], optionalFields: [] })
-  // wiredAccount({error,data}){
-  //   if(data){
-  //     console.log("Account data",data.fields.Send_PDF_Status__c.value.split("&quot;").join("\""));
-  //     console.log("Account data",JSON.parse( data.fields.Send_PDF_Status__c.value.split("&quot;").join("\"")));
-  //     this.adobePdfList= JSON.parse(data.fields.Send_PDF_Status__c.value.split("&quot;").join("\""));
-  //   }else if(error){
-  //     console.log("Account error", error);
-  //   }
-  // }
-
-  // get sendPDFStatus() {
-  //   return getFieldValue(this.account.data, SEND_PDF_STATUS);
-  // }
-
   @wire(fetchAccountBillings, { accountId: "$recordId" }) accountBilling({
     error,
     data
@@ -182,20 +119,6 @@ export default class AccountTabs extends LightningElement {
       if (this.accountBillingData.length > 0) {
         this.isaccountBillingDataAvailable = true;
       }
-    } else if (error) {
-      console.log(JSON.stringify(error));
-    }
-  }
-
-  @wire(fetchStatusCategories, { accountId: "$recordId" }) categoriesData({
-    error,
-    data
-  }) {
-    if (data) {
-      this.statusCategoryList = [];
-      JSON.parse(data).forEach(status => {
-        this.statusCategoryList.push({'name':status.CategoryName,'class':status.Status.toLowerCase()});
-      });
     } else if (error) {
       console.log(JSON.stringify(error));
     }
@@ -232,21 +155,6 @@ export default class AccountTabs extends LightningElement {
     }
   }
 
-   //@wire(load, { masterId: "$recordId", templateId: "$templateId" }) accountSendDocument({
-    //error,
-   // data
-  //}) {
-   // if (data) {
-   //   console.log(JSON.stringify(data));
-   //   this.agreementId = data;
-   //   if (this.agreementId.length > 0) {
-   //     this.isSendDocument = true;
-   //   }
-  //  } else if (error) {
-  //    console.log(JSON.stringify(error));
-  //  }
- // }
-
   connectedCallback() {
     // Promise.all([
     //   loadStyle(this, humanaCSS)
@@ -254,91 +162,6 @@ export default class AccountTabs extends LightningElement {
     //     console.log('CSS Loaded');
     // });
   }
-
-  @track
-  adobePdfList=[{
-    name:"Group Maintence Request",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Agent Overview/Plan Overview Document Template",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Employer Election form(EEF) for all Spending acounts",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Pending Signature",
-    resend : true
-
-  },{
-    name:"Employer HSA Contribution check and list form",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Employer Overview/Plan Overview Document Temlate",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"FSA and FSA with a PCA PMA - Humana COBRA Language",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"FSA and FSA with a PCA PMA - Outsourced COBRA Language",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Multilocation Form",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"PCA PMA - Humana COBRA Language",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"PCA PMA - Outsourced COBRA Language",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Premimum Only Plan Application",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Humana ELigibility Certification Form",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Humana Risk Assesssment Form (Groups 50+ only)",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Self Administration Agreement",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"Full-Time Employeement Questionaries",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  },{
-    name:"HumanaLife Employer Acknowlwdgement",
-    actionurl:"",
-    date: "05-12-2020",
-    status:"Complete"
-  }];
 
   handleRowAction(event) {
     const actionName = event.detail.action.name;
@@ -353,56 +176,6 @@ export default class AccountTabs extends LightningElement {
       default:
     }
   }
-  //@wire(getAgreementId)
-  //test;
-  handleClick(event) {
-        const evt = new ShowToastEvent({
-          title: 'Sent Document for Signature',
-          message: 'You have successfully sent the document',
-          variant:'success',
-      });
-      this.dispatchEvent(evt);
-        const index=event.target.dataset.id;
-        this.adobePdfList[index].isSendDocument=true;
-        this.adobePdfList[index].vlocity_ins__Status__c="Waiting for Signature";
-        console.log("Inside handleclick");
-        //update testing
-        const fields = {};
-        fields[ID_FIELD.fieldApiName] =  this.adobePdfList[index].Id;
-        fields[SEND_PDF_STATUS.fieldApiName] = "Waiting for Signature";
-        const recordInput = { fields };
-        updateRecord(recordInput)
-        .then(() => {
-            // this.dispatchEvent(
-            //     new ShowToastEvent({
-            //         title: 'Success',
-            //         message: 'Contact updated',
-            //         variant: 'success'
-            //     })
-            // );
-            // Display fresh data in the form
-            return refreshApex(this.account);
-        })
-        .catch(error => {
-            console.log("error",error);
-        });
-        //end of update
-
-        getAgreementId({ 'accountId': '0012E00001tjmWVQAY', 'docNumber':Number.parseInt(index)+1}).then(result=>{
-          console.log(result);
-          //isSendDocument = true;
-        }).catch(error =>{
-          console.log(error);
-        });
-      
-    }
-
-    get handleAgreementStatus() {
-      console.log("Status of the doc ",this);
-      return 1 === 'Completed';
-    }
-    
-  
 
   viewAccount(accountId) {
     console.log(accountId);

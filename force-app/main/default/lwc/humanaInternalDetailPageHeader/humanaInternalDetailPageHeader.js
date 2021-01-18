@@ -51,10 +51,6 @@ export default class HumanaInternalDetailPageHeader extends LightningElement {
     this.editGroup = false;
   }
 
-  initiateGroupInstall(){
-    window.open('/Humana/s/initiate-group?recordId=' + this.recordId);
-  }
-
   handleSuccess(event) {
     refreshApex(this.wiredActivities);
     this.editGroup = false;

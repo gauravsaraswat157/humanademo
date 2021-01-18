@@ -1,0 +1,39 @@
+<aura:component access="global">
+    <aura:attribute name="recordId" type="Id"/>
+    
+    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+        <div class="slds-grid slds-wrap slds-theme_default slds-p-around--medium slds-grid_align-space slds-grid--vertical-stretch">
+            <div class="slds-size--1-of-1 slds-large-size--1-of-3 keyInfoContainer">
+                <lightning:outputField class="keyInfo slds-align_absolute-center" variant="label-hidden" fieldName="vlocity_ins__Active__c" />
+                <ui:outputText value="Active" class="slds-align_absolute-center"/>
+            </div>
+            <div class="slds-size--1-of-1 slds-large-size--1-of-3 keyInfoContainer borderLR">
+                <lightning:outputField class="keyInfo slds-align_absolute-center" variant="label-hidden" fieldName="vlocity_ins__NumberOfMembers__c" />
+                <ui:outputText value="Members" class="slds-align_absolute-center"/>
+            </div>
+            <div class="slds-size--1-of-1 slds-large-size--1-of-3 keyInfoContainer">
+                <lightning:outputField class="keyInfo slds-align_absolute-center" variant="label-hidden" fieldName="AnnualRevenue" />
+                <ui:outputText value="Revenue" class="slds-align_absolute-center"/>
+            </div>
+        </div>
+    </lightning:recordViewForm>
+    
+    <div class="slds-grid slds-wrap slds-theme_default slds-p-around--medium  slds-grid_align-space">
+        <div class="slds-size--1-of-1">
+            <lightning:tabset>
+                <lightning:tab label="Billing">
+                    <c:AccountBillingContent />
+                </lightning:tab>
+                <lightning:tab label="Plans">
+                    <c:AccountPlansContent recordId="{!v.recordId}"/>
+                </lightning:tab>
+                <lightning:tab label="Employees">
+                    <c:AccountBillingContent />
+                </lightning:tab>
+                <lightning:tab label="Quotes">
+                    <c:AccountBillingContent />
+                </lightning:tab>
+            </lightning:tabset>
+        </div>
+    </div>
+</aura:component>

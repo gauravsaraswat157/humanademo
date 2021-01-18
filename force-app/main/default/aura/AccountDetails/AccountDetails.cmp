@@ -1,0 +1,229 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable" access="global" controller = "AccountDetails">
+    <aura:attribute name = "objAccount" type = "Account" />
+    <aura:attribute name = "recordId" type = "string"/>
+    
+    <aura:handler name ="init" value = "{!this}" action = "{!c.doInit}"/>
+    <div style="background-color:white;">
+        <div class ="header slds-m-around_xx-medium">
+            
+            <div style="background-color:#F0F3F3;"><br/>
+                <div style="margin-left:10%;background-color:#F0F3F3;"><b>Home / Manage your groups /</b>{!v.objAccount.Name}</div></div> 
+            <table class="header slds-m-around_xx-medium slds-m-right_xx-large" style = "background-color:#F0F3F3">
+                <thead>
+                    <tr style = "background-color:#F0F3F3">
+                        <th style = "background-color:#F0F3F3"></th>
+                        <th style = "background-color:#F0F3F3;border-right:2px solid green;"></th>
+                        <th style = "background-color:#F0F3F3;padding-left:3%;"><b>Company Contacts</b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="margin:4%;padding:4%;">
+                        <td style="padding-left:3%;margin-botton:10%;padding-bottom:2%;"><h1>{!v.objAccount.Name}</h1></td>
+                        <td style="border-right:2px solid green;padding-left:3%"></td>  
+                        <td style="padding-left:3%">{!v.objAccount.Name}</td>
+                    </tr>
+                    <tr style="margin:4%;padding:4%;">
+                        <td style="padding-left:3%;padding-bottom:1%;"><b>Group ID :</b>{!v.objAccount.Id}</td>  
+                        <td style="border-right:2px solid green;padding-left:3%"><b>Writting Agent : </b>{!v.objAccount.Name}</td>
+                        <!-- <td style="padding-left:3%"><img src="{!$Resource.Phone}"/>{!v.objAccount.Phone}</td> -->
+                    </tr>
+                    <tr style="margin:4%;padding:4%;">
+                        <td style="padding-left:3%"><b>Address :</b>{!v.objAccount.BillingCity+' '+v.objAccount.BillingState}<br/></td>
+                        <td style="padding-left:3%;border-right:2px solid green;"><img src="{!$Resource.Phone}" style="height:25px;width:25px;"/>&nbsp;{!v.objAccount.Phone}</td>
+                        <td style="padding-left:3%"><img src="{!$Resource.Phone}" style="height:25px;width:25px;"/>&nbsp;{!v.objAccount.Phone}</td>                 
+                    </tr>
+                    <tr style="margin:4%;padding:4%;">
+                        <td style="padding-left:7%">{! v.objAccount.BillingCountry+' '+v.objAccount.BillingPostalCode}</td>  
+                        <td style="border-right:2px solid green;padding-left:3%"><img src="{!$Resource.Email}" height="30" width="30"/>&nbsp;{!v.objAccount.vlocity_ins__Email__c}</td>  
+                        <td style="padding-left:3%"><img src="{!$Resource.Email}" height="30" width="30"/>&nbsp;{!v.objAccount.vlocity_ins__Email__c}</td> 
+                    </tr>
+                </tbody>
+                <br/>
+            </table>
+            
+        </div>
+        
+        <br/>
+        <div>
+            <div class = "slds-box slds-float_left slds-size_1-of-4" style="margin-left:5%;background-color:#477104;color:white;height:80px">
+                Group Status<br/>
+                <p style="font-size:18px;"><b>{!v.objAccount.vlocity_ins__Status__c}</b></p>
+            </div>
+            <div class = "slds-box slds-float_left slds-size_1-of-4 slds-m-left_xxx-large" style="margin-left:3%;background-color:#0C2547;color:white;height:80px">
+                Total active employees<br/>
+                <p style="font-size:18px;"><b>{!v.objAccount.vlocity_ins__SumOfEmployees__c}</b></p>
+            </div>
+            <div class = "slds-box slds-float_left slds-size_1-of-4 slds-m-left_xxx-large" style="margin-left:3%;background-color:#AD0F87;color:white;height:80px">
+                Total monthly premium<br/>
+                <p style="font-size:18px;"><b>${!v.objAccount.vlocity_ins__PremiumYear__c}</b></p>
+            </div>
+        </div>
+        <br/><br/><br/><br/><br/><br/>
+        <div style="float:none;margin:0% 5% 2% 3%;background-color:white;" class="slds-box">
+            <lightning:tabset selectedTabId="two" variant="scoped" class = "slds-tabs_medium">
+                <lightning:tab label="Billing" id="one">
+                    Billing
+                </lightning:tab>
+                <lightning:tab label="Current Policies" id="two">
+                    <div>
+                        <div style="border-top:2px solid Green;"><br/>
+                            <div class="slds-float_left" style="font-size:20px;color:green;"><b>Medical</b></div>
+                            <div class="slds-box slds-float_left" style = "margin-left:20%;height:70px;background-color:#F0F3F3;">Eligibile Employees<br/>{!v.objAccount.vlocity_ins__SumOfEmployees__c}</div>
+                            <div class="slds-box slds-float_left" style = "margin-left:5%;height:70px;background-color:#F0F3F3;">Enrolled Employees<br/>{!v.objAccount.vlocity_ins__SumOfEmployees__c}</div>
+                            <div class="slds-box slds-float_left" style = "margin-left:5%;height:70px;background-color:#F0F3F3;">Medical Monthly Premium <br/>{!v.objAccount.vlocity_ins__SumOfEmployees__c}</div>
+                            <br/><br/><br/><br/>
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="background-color:#F0F3F3">Plan Name</th>
+                                        <th style="background-color:#F0F3F3">Effective Date</th>
+                                        <th style="background-color:#F0F3F3">Expires On</th>
+                                        <th style="background-color:#F0F3F3">Coinsurance</th>
+                                        <th style="background-color:#F0F3F3">Deductible</th>
+                                        <th style="background-color:#F0F3F3">Out-Of-Pocket maximum</th>
+                                        <th style="background-color:#F0F3F3">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{!v.objAccount.Name}</td>
+                                        <td>{!v.objAccount.CreatedDate}</td>
+                                        <td>{!v.objAccount.CreatedDate}</td>
+                                        <td>Test</td>
+                                        <td>$12.00</td>
+                                        <td>$1000</td>
+                                        <td>
+                                            <lightning:buttonMenu aura:id="menu" onselect="{!c.handleSelect }" alternativeText="Show menu">
+                                                <lightning:menuItem value="MenuItemOne" label="Renew"/>
+                                                <lightning:menuItem value="MenuItemTwo" label="View Summary of Benefits &amp; Coverage" />
+                                                <lightning:menuItem value="MenuItemThree" label="View Certificate of Coverage"/>
+                                                <lightning:menuItem value="MenuItemFour" label="View Policy" />
+                                            </lightning:buttonMenu>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>   
+                        </div><br/><br/>
+                        <div style="border-top:2px solid Green;"><br/>
+                            <div class="slds-float_left" style="font-size:20px;color:green;"><b>Dental</b></div>
+                            <div class="slds-box slds-float_left" style = "margin-left:20%;height:70px;background-color:#F0F3F3;">Eligibile Employees<br/>{!v.objAccount.vlocity_ins__SumOfEmployees__c}</div>
+                            <div class="slds-box slds-float_left" style = "margin-left:5%;height:70px;background-color:#F0F3F3;">Enrolled Employees<br/>{!v.objAccount.vlocity_ins__SumOfEmployees__c}</div>
+                            <div class="slds-box slds-float_left" style = "margin-left:5%;height:70px;background-color:#F0F3F3;">Medical Monthly Premium <br/>{!v.objAccount.vlocity_ins__SumOfEmployees__c}</div>
+                            <br/><br/><br/><br/>
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered" >
+                                <thead>
+                                    <tr>
+                                        <th style="background-color:#F0F3F3">Plan Name</th>
+                                        <th style="background-color:#F0F3F3">Effective Date</th>
+                                        <th style="background-color:#F0F3F3">Expires On</th>
+                                        <th style="background-color:#F0F3F3">Coinsurance</th>
+                                        <th style="background-color:#F0F3F3">Deductible</th>
+                                        <th style="background-color:#F0F3F3">Out-Of-Pocket maximum</th>
+                                        <th style="background-color:#F0F3F3">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{!v.objAccount.Name}</td>
+                                        <td>{!v.objAccount.CreatedDate}</td>
+                                        <td>{!v.objAccount.CreatedDate}</td>
+                                        <td>Test</td>
+                                        <td>$12.00</td>
+                                        <td>$1000</td>
+                                        <td>
+                                            <lightning:buttonMenu aura:id="menu" onselect="{! c.handleSelect }" alternativeText="Show menu">
+                                                <lightning:menuItem value="MenuItemOne" label="Renew" />
+                                                <lightning:menuItem value="MenuItemTwo" label="View Summary of Benefits &amp; Coverage" />
+                                                <lightning:menuItem value="MenuItemThree" label="View Certificate of Coverage"/>
+                                                <lightning:menuItem value="MenuItemFour" label="View Policy" />
+                                            </lightning:buttonMenu>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>   
+                        </div>
+                    </div>
+                </lightning:tab>
+                <lightning:tab label="Employess" id="three">
+                    Employees
+                </lightning:tab>
+                <lightning:tab label="Quotes" id="four">
+                    Quotes
+                </lightning:tab>
+            </lightning:tabset>
+        </div>
+        <br/>
+        <div style="margin:0% 5% 0% 3%;background-color:white" class="slds-box">
+            <b><h2>Quick Links</h2></b>
+            <hr/>
+            <table>
+                <thead>
+                    <tr>
+                        <th><a href="">Valid detaild add-on rates&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                        <th><a href="">View All Certificates of Coverages&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                        <th><a href="">View All Policies&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                        <th><a href="">ID Card Center&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                    </tr>
+                </thead>
+            </table>
+            
+        </div>
+        <br/>
+        <div style="margin:0% 5% 0% 3%;background-color:white" class="slds-box">
+            <b><h2>Reposts</h2></b>
+            <hr/>
+            <table>
+                <thead>
+                    <tr>
+                        <th><a href="">HRBA Reports&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                        <th><a href="">e-Plan Compass Reports&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                        <th><a href="">Go365 Reports&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                        <th><a href="">WEI Report&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                    </tr>
+                    <tr>
+                        <th><a href="">Web Registration Report&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                        <th><a href="">Late Pay Notice Report&nbsp;<lightning:icon iconName="utility:forward" size="xx-small" alternativeText="GO"/></a></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <br/>
+        <div class = "slds-box" style="background-color:#477104;height:30%">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr  style ="color:white;">
+                        <td style = "border-right: 3px solid white;padding :25px;">Agent &amp; broker</td>
+                        <td style = "border-right: 3px solid white;padding-left:10px;">About</td>
+                        <td style = "padding-left:10px;">Corporate Responsibility</td>
+                    </tr>
+                    <tr style ="color:white;">
+                        <td style = "border-right: 3px solid white;padding :25px;">Providers</td>
+                        <td style = "border-right: 3px solid white;padding-left:10px;">Company Profile</td>
+                        <td style = "padding-left:10px;">Public Responsibility</td>
+                    </tr>
+                    <tr style ="color:white;">
+                        <td style = "border-right: 3px solid white;padding :25px;" >Small Business</td>
+                        <td style = "border-right: 3px solid white;padding-left:10px;">Careers</td>
+                        <td style = "padding-left:10px;">News</td>
+                    </tr>
+                    <tr style ="color:white;">
+                        <td style = "border-right: 3px solid white;padding :25px;">Caregivers</td>
+                        <td style = "border-right: 3px solid white;padding-left:10px;">Customer Support</td>
+                        <td style = "padding-left:10px;">Investor Relation</td>
+                        
+                    </tr>
+                    <!-- <tr><td style = "border-right: 3px solid white;padding :25px;">Espanol</td></tr>-->
+                    
+                </tbody>
+            </table>
+        </div>   
+    </div>
+</aura:component>

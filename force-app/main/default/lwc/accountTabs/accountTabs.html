@@ -1,10 +1,6 @@
 <template>
- 
   <lightning-layout class="account-status-grid">
-    <lightning-layout-item
-      padding="around-small"
-      class="group account-status-col"
-    >
+    <lightning-layout-item padding="around-small" class="group account-status-col">
       <div class="header-row">
         Group status
       </div>
@@ -12,37 +8,39 @@
         {groupStatus}
       </div>
     </lightning-layout-item>
-    <lightning-layout-item
-      padding="around-small"
-      class="employee account-status-col"
-    >
+    <lightning-layout-item padding="around-small" class="employee account-status-col">
       <div class="header-row">
-        Total census members
+        Total active employees
       </div>
       <div class="value-row">
         {activeEmployees}
       </div>
     </lightning-layout-item>
-    <lightning-layout-item
-      padding="around-small"
-      class="monthly account-status-col"
-    >
+    <lightning-layout-item padding="around-small" class="monthly account-status-col">
       <div class="header-row">
         Total monthly premium
       </div>
       <div class="value-row">
-        <lightning-formatted-number
-          value={totalMonthlyPremium}
-          format-style="currency"
-          currency-code="USD"
-        >
+        <lightning-formatted-number value={totalMonthlyPremium} format-style="currency" currency-code="USD">
         </lightning-formatted-number>
       </div>
     </lightning-layout-item>
   </lightning-layout>
 
   <lightning-tabset variant="scoped" class="shadowed-box">
-    <lightning-tab label="Plan Details">
+    <lightning-tab label="Billing">
+      <template if:true={isaccountBillingDataAvailable}>
+        <div style="height: 300px;" class="data-table-wrapper">
+          <lightning-datatable key-field="id" data={accountBillingData} columns={billingColumns} onsave={handleSave}
+            draft-values={draftValues} hide-checkbox-column="true" resize-column-disabled="true" class="billingClass">
+          </lightning-datatable>
+        </div>
+      </template>
+      <template if:false={isaccountBillingDataAvailable}>
+        <div class="slds-p-around_medium">No Billing Data Available</div>
+      </template>
+    </lightning-tab>
+    <lightning-tab label="Current Policies">
       <template if:true={isMedicalDataAvailable}>
         <lightning-layout>
           <lightning-layout-item padding="around-small" size="3">
@@ -53,45 +51,30 @@
           <lightning-layout-item padding="around-small" size="3">
             <div class="cr-policy-data">
               <div class="cr-policy-label">Eligible Employees</div>
-              <div class="cr-policy-value">
-                {activeEmployees}
-              </div>
+              <div class="cr-policy-value">{accountPolicyData.eligibleEmployeesMedical}</div>
             </div>
           </lightning-layout-item>
           <lightning-layout-item padding="around-small" size="3">
             <div class="cr-policy-data">
               <div class="cr-policy-label">Enrolled Employees</div>
-              <div class="cr-policy-value">
-                {accountPolicyData.enrolledEmployeesMedical}
-              </div>
+              <div class="cr-policy-value">{accountPolicyData.enrolledEmployeesMedical}</div>
             </div>
           </lightning-layout-item>
           <lightning-layout-item padding="around-small" size="3">
             <div class="cr-policy-data">
               <div class="cr-policy-label">Medical monthly premium</div>
               <div class="cr-policy-value">
-                <lightning-formatted-number
-                  value={accountPolicyData.monthlyPremiumMedical}
-                  format-style="currency"
-                  currency-code="USD"
-                >
+                <lightning-formatted-number value={accountPolicyData.monthlyPremiumMedical} format-style="currency"
+                  currency-code="USD">
                 </lightning-formatted-number>
               </div>
             </div>
           </lightning-layout-item>
         </lightning-layout>
         <div class="data-table-wrapper">
-          <c-datatable-custom
-            key-field="id"
-            data={accountPolicyData.medicalPolicies}
-            columns={columns}
-            onsave={handleSave}
-            draft-values={draftValues}
-            hide-checkbox-column="true"
-            resize-column-disabled="true"
-            onrowaction={handleRowAction}
-            class="medicalClass cr-policy-table"
-          >
+          <c-datatable-custom key-field="id" data={accountPolicyData.medicalPolicies} columns={columns}
+            onsave={handleSave} draft-values={draftValues} hide-checkbox-column="true" resize-column-disabled="true"
+            onrowaction={handleRowAction} class="medicalClass cr-policy-table">
           </c-datatable-custom>
         </div>
       </template>
@@ -108,45 +91,30 @@
           <lightning-layout-item padding="around-small" size="3">
             <div class="cr-policy-data">
               <div class="cr-policy-label">Eligible Employees</div>
-              <div class="cr-policy-value">
-                {activeEmployees}
-              </div>
+              <div class="cr-policy-value">{accountPolicyData.eligibleEmployeesDental}</div>
             </div>
           </lightning-layout-item>
           <lightning-layout-item padding="around-small" size="3">
             <div class="cr-policy-data">
               <div class="cr-policy-label">Enrolled Employees</div>
-              <div class="cr-policy-value">
-                {accountPolicyData.enrolledEmployeesDental}
-              </div>
+              <div class="cr-policy-value">{accountPolicyData.enrolledEmployeesDental}</div>
             </div>
           </lightning-layout-item>
           <lightning-layout-item padding="around-small" size="3">
             <div class="cr-policy-data">
               <div class="cr-policy-label">Dental monthly premium</div>
               <div class="cr-policy-value">
-                <lightning-formatted-number
-                  value={accountPolicyData.monthlyPremiumDental}
-                  format-style="currency"
-                  currency-code="USD"
-                >
+                <lightning-formatted-number value={accountPolicyData.monthlyPremiumDental} format-style="currency"
+                  currency-code="USD">
                 </lightning-formatted-number>
               </div>
             </div>
           </lightning-layout-item>
         </lightning-layout>
         <div style="height: 300px;" class="data-table-wrapper">
-          <c-datatable-custom
-            key-field="id"
-            data={accountPolicyData.dentalPolicies}
-            columns={columns}
-            onsave={handleSave}
-            draft-values={draftValues}
-            hide-checkbox-column="true"
-            resize-column-disabled="true"
-            onrowaction={handleRowAction}
-            class="dentalClass cr-policy-table"
-          >
+          <c-datatable-custom key-field="id" data={accountPolicyData.dentalPolicies} columns={columns}
+            onsave={handleSave} draft-values={draftValues} hide-checkbox-column="true" resize-column-disabled="true"
+            onrowaction={handleRowAction} class="dentalClass cr-policy-table">
           </c-datatable-custom>
         </div>
       </template>
@@ -154,40 +122,11 @@
         <div class="slds-p-around_medium">No Dental Data Available</div>
       </template>
     </lightning-tab>
-    <lightning-tab label="Billing">
-      <template if:true={isaccountBillingDataAvailable}>
-        <div style="height: 300px;" class="data-table-wrapper">
-          <lightning-datatable
-            key-field="id"
-            data={accountBillingData}
-            columns={billingColumns}
-            onsave={handleSave}
-            draft-values={draftValues}
-            hide-checkbox-column="true"
-            resize-column-disabled="true"
-            class="billingClass"
-          >
-          </lightning-datatable>
-        </div>
-      </template>
-      <template if:false={isaccountBillingDataAvailable}>
-        <div class="slds-p-around_medium">No Billing Data Available</div>
-      </template>
-    </lightning-tab>
-
     <lightning-tab label="Employees">
       <template if:true={isaccountEmployeesDataAvailable}>
         <div style="height: 300px;" class="data-table-wrapper">
-          <lightning-datatable
-            key-field="id"
-            data={accountEmployeesData}
-            columns={employeesColumns}
-            onsave={handleSave}
-            draft-values={draftValues}
-            hide-checkbox-column="true"
-            resize-column-disabled="true"
-            class="employeeClass"
-          >
+          <lightning-datatable key-field="id" data={accountEmployeesData} columns={employeesColumns} onsave={handleSave}
+            draft-values={draftValues} hide-checkbox-column="true" resize-column-disabled="true" class="employeeClass">
           </lightning-datatable>
         </div>
       </template>
@@ -198,145 +137,14 @@
     <lightning-tab label="Quotes">
       <template if:true={isaccountQuotesDataAvailable}>
         <div style="height: 300px;" class="data-table-wrapper">
-          <lightning-datatable
-            key-field="id"
-            data={accountQuotesData}
-            columns={quotesColumns}
-            onsave={handleSave}
-            draft-values={draftValues}
-            hide-checkbox-column="true"
-            resize-column-disabled="true"
-            class="quoteClass"
-          >
+          <lightning-datatable key-field="id" data={accountQuotesData} columns={quotesColumns} onsave={handleSave}
+            draft-values={draftValues} hide-checkbox-column="true" resize-column-disabled="true" class="quoteClass">
           </lightning-datatable>
         </div>
       </template>
       <template if:false={isaccountQuotesDataAvailable}>
         <div class="slds-p-around_medium">No Quotes Data Available</div>
       </template>
-    </lightning-tab>
-    <lightning-tab label="Status">
-      <div style="height: 300px;" class="data-table-wrapper">
-       
-        <div class="slds-progress">
-          <main>
-            <ol class="progress-tracker icon">
-              <template for:each={statusCategoryList} for:item="status" >
-                <li key={status.name} class={status.class}>
-                  <span>{status.name}</span>
-                </li>
-              </template>
-            </ol>
-            <!--ol class="progress-tracker icon">
-              <li class="completed"><span>Product selected</span></li>
-              <li class="skipped"><span>Affordability review</span></li>
-              <li class="completed document dotted"><span>KFI<br/> generated</span></li>
-              <li class="current hide"><span>Product recommended</span></li>
-              <li class="hide"><span>Suitability generated</span></li>
-              <li><span>Product chosen</span></li>
-              <li><span>Application sent</span></li>
-            </ol-->
-            
-          </main>
-        </div>
-      </div>
-    </lightning-tab>
-    <lightning-tab label="Documents">
-      <div style="height: 300px;overflow: auto" class="data-table-wrapper">
-        <table class="slds-table slds-table_cell-buffer slds-table_bordered pdf-table">
-          <thead>
-            <tr class="slds-line-height_reset">
-              <th class="header-custom" scope="col">
-                <div class="slds-truncate" title="Name">Name</div>
-              </th>
-              <th class="header-custom" scope="col">
-                <div class="slds-truncate" title="Status">Date</div>
-              </th>
-              <th class="header-custom" scope="col">
-                  <div class="slds-truncate" title="Status">Status</div>
-              </th>
-              <th class="header-custom" scope="col">
-                <div class="slds-truncate" title="Action">Action</div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <template for:each={adobePdfList} for:item="i" for:index="index" >
-              <tr key={i.Id} class="slds-hint-parent">
-                <th data-label="Opportunity Name" scope="row">
-                  <div class="slds-truncate" title="Cloudhub">
-                    {i.Name}
-                  </div>
-                </th>
-                <th data-label="Opportunity Name" scope="row">
-                  <div class="slds-truncate" title="Cloudhub">
-                    {i.LastModifiedDate}
-                  </div>
-                </th>
-                <th data-label="Opportunity Name" scope="row">
-                    <div class="slds-truncate" title="Cloudhub">
-                      {i.vlocity_ins__Status__c}
-                    </div>
-                  </th>
-                <td data-label="Account Name">
-                  <div class="slds-truncate slds-button" title="Cloudhub">
-                      <a if:false={i.isSendDocument} href="javascript:void(0);" style="color: white;background : #1c5b2c" data-id={index}  class={i.isSendDocument} onclick={handleClick} >Send For Signature</a>
-                    <template if:true={i.isSendDocument}>
-                      <a  data-status={i.status} onclick={handleClick} data-id={index} style="color: #1c5b2c" href="javascript:void(0);">Resend Document</a>
-                    </template>
-                  </div>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
-      </div>
-    </lightning-tab>
-    <lightning-tab label="Detailed Status">
-        <iframe src="https://health-demo.force.com/Humana/apex/vlocity_ins__OrchestrationPlanView?id=a4P2E000000cbM9UAI&useCache=false" style="
-                width: 100%;
-                height: 1107px;
-                border: none;"></iframe>
-                
-      <!--div style="height: 300px;overflow: auto" class="data-table-wrapper">
-        <table class="slds-table slds-table_cell-buffer slds-table_bordered pdf-table">
-          <thead>
-            <tr class="slds-line-height_reset">
-              <th class="header-custom" scope="col">
-                <div class="slds-truncate" title="Name">Name</div>
-              </th>
-              <th class="header-custom" scope="col">
-                  <div class="slds-truncate" title="Status">Status</div>
-                </th>
-              <th class="header-custom" scope="col">
-                <div class="slds-truncate" title="Action">Action</div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <template for:each={adobePdfList} for:item="i" >
-              <tr key={i.name} class="slds-hint-parent">
-                <th data-label="Opportunity Name" scope="row">
-                  <div class="slds-truncate" title="Cloudhub">
-                    {i.name}
-                  </div>
-                </th>
-                <th data-label="Opportunity Name" scope="row">
-                    <div class="slds-truncate" title="Cloudhub">
-                      {i.status}
-                    </div>
-                  </th>
-                <td data-label="Account Name">
-                  <div class="slds-truncate" title="Cloudhub">
-                      <a class="slds-button" href="javascript:void(0);">Send</a>
-
-                  </div>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
-      </div>-->
     </lightning-tab>
   </lightning-tabset>
 </template>

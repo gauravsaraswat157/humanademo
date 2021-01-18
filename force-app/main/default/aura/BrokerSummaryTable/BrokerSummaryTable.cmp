@@ -1,0 +1,49 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+	<!--attrubutes-->
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="data" type="Object"/>
+    
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead class="new">
+                                <tr class="slds-line-height_reset">
+                                    <aura:iteration items="{!v.columns}" var="item">
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="">{!item.label}</div>
+                                        </th>
+                                    </aura:iteration>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <aura:iteration items="{!v.data}" var="item">
+                                    <tr class="slds-hint-parent">
+                                        <td data-label="Group Name">
+                                            <div class="slds-truncate" title="{!item.groupName}"><a href="#">{!item.groupName}</a></div>
+                                        </td>
+                                        <td data-label="Quote no.">
+                                            <div class="slds-truncate" title="{!item.quoteNumber}">{!item.quoteNumber}</div>
+                                        </td>
+                                        <td data-label="Effective Date">
+                                            <div class="slds-truncate" title="{!item.effectiveDate}">{!item.effectiveDate}</div>
+                                        </td>
+                                        <td data-label="Case Size">
+                                            <div class="slds-truncate" title="{!item.caseSize}">{!item.caseSize}</div>
+                                        </td>
+                                        <td data-label="Type">
+                                            <div class="slds-truncate" title="{!item.type}">{!item.type}</div>
+                                        </td>
+                                        <td data-label="Lines">
+                                            <div class="slds-truncate" title="{!item.lines}">{!item.lines}</div>
+                                        </td>
+                                        <td data-label="Status">
+                                            <div class="slds-truncate" title="{!item.status}">{!item.status}</div>
+                                        </td>
+                                        <td data-label="Quote View">
+                                            <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                                <a href="javascript:void(0);" tabindex="-1">View Quote &rarr;</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </aura:iteration>
+                            </tbody>
+                        </table>
+</aura:component>

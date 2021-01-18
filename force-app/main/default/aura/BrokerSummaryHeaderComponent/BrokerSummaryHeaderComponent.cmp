@@ -1,0 +1,18 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <lightning:carousel disableAutoScroll="false" disableAutoRefresh="false" scrollDuration = "8">
+        <lightning:carouselImage src="{!$Resource.BrokerSummaryCarouselImg+'/BrokerSummaryCarouselImage/Img1.jpg'}"
+                              header="Welcome to XYZ Heathcares"
+                              description="Wellness programs help lower long-term healthcare costs."
+                              alternativeText="Reload Image"></lightning:carouselImage>
+        <lightning:carouselImage src="{!$Resource.BrokerSummaryCarouselImg+'/BrokerSummaryCarouselImage/Img2.jpeg'}"
+                              header="Welcome to XYZ Heathcares"
+                              description="Wellness programs help lower long-term healthcare costs."
+                              alternativeText="Reload Image">
+     </lightning:carouselImage>
+        <lightning:carouselImage src="{!$Resource.BrokerSummaryCarouselImg+'/BrokerSummaryCarouselImage/Img3.jpg'}"
+                              header="Welcome to XYZ Heathcares"
+                              description="Wellness programs help lower long-term healthcare costs."
+                              alternativeText="Cann't load this image.">
+     </lightning:carouselImage>
+  </lightning:carousel>
+</aura:component>

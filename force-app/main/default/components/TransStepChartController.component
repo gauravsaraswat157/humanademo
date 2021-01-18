@@ -1,0 +1,22 @@
+<apex:component >
+
+        <script>
+
+            (function() {
+                'use strict';
+                angular
+                    .module('IndividualQuoting')
+                    .controller('transStepChartController', transStepChartController);
+
+                transStepChartController.$inject = ['$scope'];
+                // Can you please replace the Accumulation Period filter with Network instead?
+                // They also want all of the filter options checked and a button that says
+                // clear all filters (at the top)
+
+                function transStepChartController($scope) {
+                        console.info($scope.bpTree);
+                
+                }
+           }();
+        </script>
+</apex:component>
